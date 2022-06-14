@@ -1,8 +1,9 @@
-import React, { useContext, useReducer, useState } from "react";
 import axios from "axios";
-// import { API } from "../helpers/Consts";
-// import { API2 } from "../helpers/Consts";
-import { useLocation, useNavigate } from "react-router-dom";
+import { ACTIONS, API } from "../../helpers/const";
+import { createContext } from "react";
+import { useContext } from "react";
+import { useState } from "react";
+import { useReducer } from "react";
 
 export const productContext = createContext();
 
@@ -13,45 +14,38 @@ export const useProducts = () => {
 const INIT_STATE = {
   products: [],
   productDetails: {},
-  comments: [],
 };
 
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
-    case "GET_PRODUCTS":
+    case ACTIONS.GET_PRODUCTS:
       return { ...state, products: action.payload };
-    case "GET_PRODUCT_DETAILS":
+    case ACTIONS.GET_PRODUCT_DETAILS:
       return { ...state, productDetails: action.payload };
-    case "GET_COMMENTS":
-      return { ...state, comments: action.payload };
     default:
       return state;
   }
 };
-const ProductContextProvider = ({ children }) => {
-  const location = useLocation();
-  const navigate = useNavigate();
 
+const ProductContextProvider = ({ children }) => {
   const [page, setPage] = useState(1);
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   const [count, setCount] = useState(1);
 
   const getProducts = async () => {
-    let loc = location.pathname;
-    let url = `${loc}?page=${page}`;
-    navigate(url);
-    const { data } = await axios(`${API}?page=${page}`);
-    setCount(Math.ceil(data.count / 6));
+    const { data } = await axios(`${API}/?page=${page}`);
+    setCount(Math.ceil(data.count / 3));
     dispatch({
-      type: "GET_PRODUCTS",
+      type: ACTIONS.GET_PRODUCTS,
       payload: data,
     });
   };
+
   const getProductDetails = async (id) => {
-    const { data } = await axios(`${API}${id}`);
+    const { data } = await axios(`${API}/${id}/`);
     dispatch({
-      type: "GET_PRODUCT_DETAILS",
+      type: ACTIONS.GET_PRODUCT_DETAILS,
       payload: data,
     });
   };
@@ -59,67 +53,84 @@ const ProductContextProvider = ({ children }) => {
   const addProduct = async (newProduct) => {
     let token = JSON.parse(localStorage.getItem("token"));
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    console.log(newProduct);
+    const Authorization = `Bearer ${token.access}`;
 
     let newProduct2 = new FormData();
     newProduct2.append("name", newProduct.name);
-    newProduct2.append("category", newProduct.category);
+    newProduct2.append("type", newProduct.type);
     newProduct2.append("price", newProduct.price);
+    newProduct2.append("manufacture", newProduct.manufacture);
     newProduct2.append("description", newProduct.description);
-    newProduct2.append("made_in", newProduct.made_in);
     newProduct2.append("image", newProduct.image);
 
-    await axios.post(`${API}`, newProduct2, config);
+    await axios.post(`${API}/`, newProduct2, {
+      headers: { Authorization },
+    });
     getProducts();
-    navigate("/store");
   };
 
   const deleteProduct = async (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
+
     const Authorization = `Bearer ${token.access}`;
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    await axios.delete(`${API}${id}`, config);
+    await axios.delete(`${API}/${id}/`, {
+      headers: { Authorization },
+    });
     getProducts();
   };
 
   const saveEditedProduct = async (newProduct) => {
     let token = JSON.parse(localStorage.getItem("token"));
 
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    let newProduct2 = new FormData();
-    newProduct2.append("name", newProduct.name);
-    newProduct2.append("category", newProduct.category);
-    newProduct2.append("price", newProduct.price);
-    newProduct2.append("description", newProduct.description);
-    newProduct2.append("made_in", newProduct.made_in);
-    newProduct2.append("id", newProduct.id);
+    const Authorization = `Bearer ${token.access}`;
+
+    // const config ={
+    //     headers: {'Content-Type':'multipart/form-data'}
+    //   }
+
+    let newEditProduct = new FormData();
+    newEditProduct.append("name", newProduct.name);
+    newEditProduct.append("type", newProduct.type);
+    newEditProduct.append("price", newProduct.price);
+    newEditProduct.append("manufacture", newProduct.manufacture);
+    newEditProduct.append("description", newProduct.description);
+    newEditProduct.append("id", newProduct.id);
     if (typeof newProduct.image !== "string") {
-      newProduct2.append("image", newProduct.image);
+      newEditProduct.append("image", newProduct.image);
     }
+    let id = newEditProduct.get("id");
 
-    let id = newProduct2.get("id");
-
-    await axios.patch(`${API}${id}/`, newProduct2, config);
+    await axios.patch(`${API}/${id}/`, newEditProduct, {
+      headers: { Authorization },
+    });
     getProducts();
-    navigate("/store");
   };
+
+  //   const fetchByParams = async (value) => {
+  //     if (value === "all") {
+  //       getProducts();
+  //     } else if (value === "5" || value === "7" || value === "10") {
+  //       const { data } = await axios(
+  //         `http://34.88.61.26/api/v1/doctors/?experience_min=${value}`
+  //       );
+  //       console.log(value);
+  //       console.log(data);
+  //       dispatch({
+  //         type: ACTIONS.GET_PRODUCTS,
+  //         payload: data,
+  //       });
+  //     } else {
+  //       const { data } = await axios(
+  //         `http://34.88.61.26/api/v1/doctors/?speciality=${value}`
+  //       );
+
+  //       dispatch({
+  //         type: ACTIONS.GET_PRODUCTS,
+  //         payload: data,
+  //       });
+  //     }
+  //   };
 
   const fetchByParams = async (query, value) => {
     if (value === "all") {
@@ -128,80 +139,30 @@ const ProductContextProvider = ({ children }) => {
       const { data } = await axios(`${API}filter/?${query}=${value}`);
 
       dispatch({
-        type: "GET_PRODUCTS",
+        type: ACTIONS.GET_PRODUCTS,
         payload: data,
       });
     }
   };
 
   const searchFilter = async (value) => {
-    const { data } = await axios(`${API}search/?q=${value}`);
+    const { data } = await axios(`${API}/search/?q=${value}`);
 
     dispatch({
-      type: "GET_PRODUCTS",
+      type: ACTIONS.GET_PRODUCTS,
       payload: data,
     });
+    console.log(data);
   };
 
-  const toogleLike = async (like) => {
+  const like = async (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
     const Authorization = `Bearer ${token.access}`;
-
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-
-    await axios(`${API}${like}/toggle_like/`, config);
-    getProducts();
-  };
-  const getComments = async (id) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        // Authorization: `Bearer ${token.access}`,
-      },
-    };
-    let { data } = await axios(`${API}${id}`);
-
-    dispatch({
-      type: "GET_COMMENTS",
-      payload: data,
+    const count = await axios(`${API}/${id}/toggle_like`, {
+      headers: { Authorization },
     });
-  };
-
-  const addComment = async (comm) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-
-    console.log(comm);
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    let newComm = new FormData();
-
-    newComm.append("product", comm.product);
-    newComm.append("text", comm.text);
-
-    await axios.post(`${API2}comments/`, newComm, config);
-  };
-
-  const deleteComm = async (id) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    await axios.delete(`${API2}comments/${id}/`, config);
+    console.log(count);
+    getProducts();
   };
 
   return (
@@ -209,21 +170,17 @@ const ProductContextProvider = ({ children }) => {
       value={{
         products: state.products,
         productDetails: state.productDetails,
-        comments: state.comments,
         addProduct,
         getProducts,
-        deleteProduct,
-        saveEditedProduct,
         getProductDetails,
-        page,
+        saveEditedProduct,
+        deleteProduct,
         setPage,
-        fetchByParams,
+        page,
         count,
+        fetchByParams,
         searchFilter,
-        toogleLike,
-        getComments,
-        addComment,
-        deleteComm,
+        like,
       }}
     >
       {children}
