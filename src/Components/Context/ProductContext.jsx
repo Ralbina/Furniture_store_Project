@@ -14,6 +14,7 @@ export const useProducts = () => {
 const INIT_STATE = {
   products: [],
   productDetails: {},
+  comments: [],
 };
 
 const reducer = (state = INIT_STATE, action) => {
@@ -22,6 +23,8 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, products: action.payload };
     case ACTIONS.GET_PRODUCT_DETAILS:
       return { ...state, productDetails: action.payload };
+    case ACTIONS.GET_COMMENTS:
+      return { ...state, comments: action.payload };
     default:
       return state;
   }
@@ -165,6 +168,50 @@ const ProductContextProvider = ({ children }) => {
     getProducts();
   };
 
+  const getComments = async (id) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        // Authorization: `Bearer ${token.access}`,
+      },
+    };
+    let { data } = await axios(`${API}${id}`);
+
+    dispatch({
+      type: ACTIONS.GET_COMMENTS,
+      payload: data,
+    });
+  };
+  const addComment = async (c) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token.access}`,
+      },
+    };
+    let newComment = new FormData();
+
+    newComment.append("product", c.product);
+    newComment.append("text", c.text);
+
+    await axios.post(`${API}comments/`, newComment, config);
+  };
+
+  const deleteComment = async (id) => {
+    let token = JSON.parse(localStorage.getItem("token"));
+
+    const config = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: `Bearer ${token.access}`,
+      },
+    };
+    await axios.delete(`${API}comments/${id}/`, config);
+  };
   return (
     <productContext.Provider
       value={{
@@ -181,6 +228,9 @@ const ProductContextProvider = ({ children }) => {
         fetchByParams,
         searchFilter,
         like,
+        getComments,
+        addComment,
+        deleteComment,
       }}
     >
       {children}

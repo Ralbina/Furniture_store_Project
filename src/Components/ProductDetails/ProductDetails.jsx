@@ -1,4 +1,4 @@
-import { Zoom } from "@mui/material";
+import { Button, Zoom } from "@mui/material";
 import { Grid } from "@mui/material";
 import { Paper } from "@mui/material";
 import { IconButton } from "@mui/material";
@@ -9,17 +9,51 @@ import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { TextField } from "@mui/material";
+import { useState } from "react";
 
 const ProductDetails = ({ item }) => {
   const { id } = useParams();
 
-  const { getProductDetails, productDetails, like } = useProducts();
+  const {
+    getProductDetails,
+    productDetails,
+    like,
+    getComments,
+    comments,
+    addComment,
+    deleteComment,
+  } = useProducts();
 
   useEffect(() => {
     getProductDetails(id);
+    getComments(id);
   }, []);
 
+  const [com, setCom] = useState("");
+
+  const [clear, setClear] = useState("");
+
+  useEffect(() => {
+    getProductDetails(id);
+    getComments(id);
+  }, [comments]);
+
   console.log(item);
+
+  const handleInp = (e) => {
+    let id2 = Number(id);
+    let obj = {
+      product: id2,
+      text: e.target.value,
+    };
+    setCom(obj);
+    setClear(e.target.value);
+  };
+
+  const clearInp = (e) => {
+    setClear("");
+  };
 
   return (
     <Zoom>
@@ -71,6 +105,19 @@ const ProductDetails = ({ item }) => {
             >
               <Typography variant="h5">{productDetails.type}</Typography>
               <Typography variant="h6">{productDetails.description}</Typography>
+              <Box>
+                {" "}
+                <TextField size="small" onChange={handleInp} value={clear} />
+                <Button
+                  onClick={() => {
+                    addComment(com);
+                    clearInp();
+                  }}
+                  sx={{ color: "black" }}
+                >
+                  Добавить комментарий
+                </Button>
+              </Box>
             </Paper>
           </Grid>
         </Grid>
