@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
+import AboutUs from "./Components/AboutUs/AboutUs";
 import AddProduct from "./Components/Admin/AddProduct";
 import EditProduct from "./Components/Admin/EditProduct";
 import Home from "./Components/Home/Home";
@@ -14,6 +15,7 @@ const MainRoutes = () => {
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/list" element={<ProductList />} />
       <Route path="/details/:id" element={<ProductDetails />} />
+      <Route path="/aboutus" element={<AboutUs />} />
     </Routes>
   );
 };

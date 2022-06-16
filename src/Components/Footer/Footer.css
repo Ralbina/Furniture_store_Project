@@ -1,0 +1,9 @@
+.footer1 {
+  background-color: #154444;
+  color: #fff;
+  display: flex;
+  justify-content: space-around;
+}
+.bigText1 {
+  font-size: large;
+}
