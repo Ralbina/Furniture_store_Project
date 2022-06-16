@@ -1,15 +1,11 @@
 import { Box, Button, Input, TextField } from "@mui/material";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
 import { useProducts } from "../Context/ProductContext";
+import "../Admin/AddProduct.css";
 
 const AddProduct = () => {
   const { addProduct } = useProducts();
-
-  // useEffect(() => {
-  //   getProducts();
-  // }, []);
 
   const navigate = useNavigate();
 
@@ -45,6 +41,7 @@ const AddProduct = () => {
 
   return (
     <Box
+      className="aadBox"
       sx={{
         display: "flex",
         justifyContent: "center",
@@ -54,8 +51,9 @@ const AddProduct = () => {
         sx={{
           width: "40vw",
           p: "6vh 1vw",
-          ml: "1vw",
+          ml: "34vw",
           my: "8vh",
+          mt: "10vh",
           display: "flex",
           flexDirection: "column",
           // backgroundColor: "black",
@@ -63,6 +61,7 @@ const AddProduct = () => {
         }}
       >
         <TextField
+          className="inp1"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -76,6 +75,7 @@ const AddProduct = () => {
           onChange={handleInp}
         />
         <TextField
+          className="inp2"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -89,6 +89,7 @@ const AddProduct = () => {
           onChange={handleInp}
         />
         <TextField
+          className="inp3"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -102,6 +103,7 @@ const AddProduct = () => {
           onChange={handleInp}
         />
         <TextField
+          className="inp4"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -116,6 +118,7 @@ const AddProduct = () => {
         />
 
         <TextField
+          className="inp5"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -129,8 +132,9 @@ const AddProduct = () => {
           onChange={handleInp}
         />
 
-        <Input type="file" onChange={handleInpFile} />
+        {/* <Input className="inpPhoto" type="file" onChange={handleInpFile} /> */}
         <Button
+          className="btn"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -142,7 +146,7 @@ const AddProduct = () => {
           size="large"
           onClick={() => {
             addProduct(product);
-            navigate("/add");
+            // navigate("/list");
           }}
         >
           Добавить продукт
