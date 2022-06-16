@@ -5,3 +5,4 @@ export const ACTIONS = {
 };
 
 export const API = "http://44.202.84.170/products";
+export const AUTH_API = "http://44.202.84.170/account/";
