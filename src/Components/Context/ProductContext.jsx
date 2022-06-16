@@ -44,6 +44,7 @@ const ProductContextProvider = ({ children }) => {
       payload: data,
     });
   };
+  // console.log(getProducts());
 
   const getProductDetails = async (id) => {
     const { data } = await axios(`${API}/${id}/`);
