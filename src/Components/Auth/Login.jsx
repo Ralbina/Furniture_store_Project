@@ -14,6 +14,8 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useAuth } from "../Context/AuthContext";
 import { green } from "@mui/material/colors";
+import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Copyright(props) {
   return (
@@ -47,10 +49,17 @@ export default function Login() {
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigate = useNavigate();
   const { login, error } = useAuth();
 
   function handleLogin(email, password) {
-    login(email, password);
+    try {
+      console.log(email, password);
+      login(email, password);
+      navigate("/");
+    } catch (error) {
+      console.log("error", error);
+    }
   }
   return (
     <ThemeProvider theme={theme}>

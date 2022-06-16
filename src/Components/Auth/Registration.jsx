@@ -83,6 +83,7 @@ export default function Registration() {
     }
 
     register({ username, email, password, password_confirm });
+    alert("ok");
   }
 
   return (
