@@ -1,12 +1,3 @@
-#app {
-  height: 100%;
-}
-html,
-body {
-  position: relative;
-  height: 100%;
-}
-
 body {
   background: #eee;
   font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
@@ -56,12 +47,14 @@ body {
   line-height: 29px;
 }
 .container1 {
-  background-image: url(../../assets/image/img1.png);
-  margin-left: 70px;
+  /* background-image: url(../../assets/image/img1.png); */
+  display: flex;
+  justify-content: space-between;
+  /* margin-left: 70px;
   padding-top: 70px;
   background-repeat: no-repeat;
   width: 972px;
-  height: 700px;
+  height: 700px; */
 }
 .texts {
   padding: 25px 120px 0 120px;
@@ -70,22 +63,209 @@ body {
   width: 400.53px;
   height: 469.92px;
   text-align: center;
+  margin-top: 100px;
 }
 .icons {
   display: flex;
-  justify-content: last baseline;
+  justify-content: space-around;
+  margin: 100px;
 }
 .container2 {
+  margin-top: 100px;
   color: #154444;
+  text-align: center;
 }
+
 .container3 {
   display: flex;
   color: #154444;
+  justify-content: space-around;
+}
+.ellipsr {
+  height: 600px;
 }
 .text3 {
   padding: 25px 120px 0 120px;
-  color: #fff;
+  color: #154444;
   width: 400.53px;
   height: 469.92px;
   text-align: center;
+}
+.text4 {
+  color: #154444;
+  text-align: center;
+  padding: 0 150px 0 150px;
+}
+.cardsImg {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cardsImg1 {
+  width: 200px;
+  height: 150px;
+}
+.cardsImg2 {
+  width: 100px;
+  height: 100px;
+  margin-top: 25px;
+}
+.cardsImg3 {
+  width: 100px;
+  height: 90px;
+  margin-top: 25px;
+}
+.cardsImg4 {
+  width: 200px;
+  height: 100px;
+  margin-top: 25px;
+}
+.cardsImg5 {
+  width: 200px;
+  height: 100px;
+  margin-top: 10px;
+}
+.cardsImg6 {
+  width: 150px;
+  height: 100px;
+  margin-top: 10px;
+}
+.btn {
+  margin: 30px;
+  background-color: #154444 !important;
+  padding: 20px 40px 20px 40px !important;
+  color: #fff;
+}
+.bigText4 {
+  /* animation-duration: 4s; */
+  /* animation-name: slidein; */
+  /* animation-iteration-count: infinite; */
+  /* animation-direction: alternate; */
+  font-size: 56px;
+  line-height: 68.26px;
+}
+/* @keyframes slidein {
+  from {
+    margin-left: 100%;
+    width: 300%;
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+} */
+.img4 {
+  animation-duration: 4s;
+}
+.img4:hover {
+  transition: 0.5s;
+  border-radius: 50%;
+}
+
+.img6:hover {
+  box-shadow: inset 0 0 0 25px #53a7ea;
+}
+
+/* button Go To Shop start */
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 50px;
+}
+.button {
+  min-width: 300px;
+  min-height: 60px;
+  font-family: "Nunito", sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #ffff;
+  background: #154444;
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px #154444;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  margin: 40px;
+}
+
+button::before {
+  content: "";
+  border-radius: 1000px;
+  min-width: calc(300px + 12px);
+  min-height: calc(60px + 12px);
+  border: 6px solid #154444;
+  box-shadow: 0 0 60px #154444;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.button:hover,
+.button:focus {
+  color: black;
+  transform: translateY(-6px);
+}
+
+.button:hover::before,
+.button:focus::before {
+  opacity: 1;
+}
+
+.button::after {
+  content: "";
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  border: 6px solid #154444;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+.button:hover::after,
+.button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+  }
+}
+/* button Go To Shop end */
+.container4 {
+  margin: 100px;
+}
+.container5 {
+  text-align: center;
+  padding: 50px 200px 50px 200px;
+  border: 6px solid #154444;
+  border-radius: 80px;
+}
+.container6 {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 100px;
 }
