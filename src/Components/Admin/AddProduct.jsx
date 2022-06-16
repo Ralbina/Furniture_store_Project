@@ -134,7 +134,7 @@ const AddProduct = () => {
 
         {/* <Input className="inpPhoto" type="file" onChange={handleInpFile} /> */}
         <Button
-          className="btn"
+          className="btnList"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
