@@ -6,7 +6,7 @@ import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 const Footer = () => {
   return (
-    <div>
+    <div className="containerFooter">
       <div className="footer1">
         <div>
           <p className="bigText1">DudeShape</p>
