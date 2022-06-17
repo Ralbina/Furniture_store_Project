@@ -148,7 +148,7 @@ export default function PasswordRecovery() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
-                handleRegister(username, email, password, password_confirm);
+                handleRegister(password, password_confirm);
                 navigate("/");
               }}
             >

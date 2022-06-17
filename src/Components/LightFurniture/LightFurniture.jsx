@@ -35,7 +35,7 @@ export default function MasonryImageList() {
   return (
     <div className="modern">
       <div className="textDiv">
-        <p className="bigText">MODERN LIGHTING</p>
+        <p className="bigTextModern">MODERN LIGHTING</p>
         <p className="textModern">
           Contemporary Crystal Chandeliers, Modern Ceiling Lighting, Sconces,
           Table Lamps, Wall Lights, Outdoor and Technical Lighting for any

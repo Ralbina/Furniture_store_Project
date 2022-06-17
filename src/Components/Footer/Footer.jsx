@@ -4,6 +4,7 @@ import InstagramIcon from "@mui/icons-material/Instagram";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import scan from "../../assets/image/scan.png";
 const Footer = () => {
   return (
     <div className="containerFooter">
@@ -39,6 +40,7 @@ const Footer = () => {
         <div>
           <p className="bigText1">Subscribe</p>
           <p>Subscribe to get the latest news from us</p>
+          <img className="scanImg" src={scan} />
         </div>
       </div>
       <p className="footer2">Copyright @ 2021. Crafted with love.</p>
