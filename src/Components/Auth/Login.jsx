@@ -14,8 +14,9 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useAuth } from "../Context/AuthContext";
 import { green } from "@mui/material/colors";
-import { Navigate } from "react-router-dom";
+import { Link as LinkRouter, Navigate } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Copyright(props) {
   return (
@@ -53,13 +54,23 @@ export default function Login() {
   const { login, error } = useAuth();
 
   function handleLogin(email, password) {
-    try {
-      console.log(email, password);
-      login(email, password);
-      navigate("/");
-    } catch (error) {
-      console.log("error", error);
-    }
+    login(email, password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        alert(error.response?.data?.detail);
+        console.log(error);
+        toast.error(error.response?.data?.detail, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: false,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   }
   return (
     <ThemeProvider theme={theme}>
@@ -124,14 +135,14 @@ export default function Login() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/forgot_password" variant="body2">
+                <LinkRouter to="/forgot_password" variant="body2">
                   Forgot password?
-                </Link>
+                </LinkRouter>
               </Grid>
               <Grid item>
-                <Link href="/register" variant="body2">
+                <LinkRouter to="/register" variant="body2">
                   {"Don't have an account? Sign Up"}
-                </Link>
+                </LinkRouter>
               </Grid>
             </Grid>
           </Box>
