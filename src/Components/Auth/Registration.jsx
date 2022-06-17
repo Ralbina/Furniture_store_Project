@@ -18,6 +18,7 @@ import { Navigation } from "@mui/icons-material";
 import { pink } from "@mui/material/colors";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { userAdmin } from "../../helpers/const";
 
 function Copyright(props) {
   return (
@@ -179,7 +180,7 @@ export default function Registration() {
               Register
             </Button>
 
-            {user.email === "admin@gmail.com" ? (
+            {user.email === userAdmin ? (
               <NavLink className="nav-link" to="/add">
                 <p variant="contained">Add Produts</p>
               </NavLink>

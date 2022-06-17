@@ -58,7 +58,7 @@ const ProductContextProvider = ({ children }) => {
     let token = JSON.parse(localStorage.getItem("token"));
 
     const Authorization = `Bearer ${token.access}`;
-
+    console.log(Authorization);
     let newProduct2 = new FormData();
     newProduct2.append("name", newProduct.name);
     newProduct2.append("type", newProduct.type);

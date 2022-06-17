@@ -116,9 +116,23 @@ const AddProduct = () => {
           size="small"
           onChange={handleInp}
         />
-
         <TextField
           className="inp5"
+          sx={{
+            marginBottom: "10px",
+            borderColor: "black",
+            backgroundColor: "whitesmoke",
+          }}
+          id="outlined-basic"
+          label="Изображение"
+          variant="outlined"
+          name="image"
+          size="small"
+          onChange={handleInp}
+        />
+
+        <TextField
+          className="inp6"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -134,7 +148,7 @@ const AddProduct = () => {
 
         {/* <Input className="inpPhoto" type="file" onChange={handleInpFile} /> */}
         <Button
-          className="btn"
+          className="btnList"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -146,7 +160,7 @@ const AddProduct = () => {
           size="large"
           onClick={() => {
             addProduct(product);
-            // navigate("/list");
+            navigate("/list");
           }}
         >
           Добавить продукт
