@@ -6,6 +6,7 @@ import EditProduct from "./Components/Admin/EditProduct";
 import Done from "./Components/Auth/Done";
 import ForgotPassword from "./Components/Auth/ForgotPassword";
 import Login from "./Components/Auth/Login";
+import PasswordRecovery from "./Components/Auth/PasswordRecovery";
 import Registration from "./Components/Auth/Registration";
 import Home from "./Components/Home/Home";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
@@ -19,6 +20,7 @@ const MainRoutes = () => {
       <Route path="/done" element={<Done />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot_password" element={<ForgotPassword />} />
+      <Route path="/resetPassword/" element={<PasswordRecovery />} />
       <Route path="/add" element={<AddProduct />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/list" element={<ProductList />} />

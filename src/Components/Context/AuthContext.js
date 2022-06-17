@@ -53,40 +53,21 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
-  //   const activation = async (code) => {
-  //     const config = {
-  //       headers: { "Content-Type": "multipart/form-data" },
-  //     };
-  //     let formData = new FormData();
-  //     formData.append("activate_code", code);
-  //     navigate("/login");
-  //     try {
-  //       const res = await axios.get(
-  //         `${AUTH_API}activate/${code}/`,
-  //         {
-  //           activate_code: code,
-  //         },
-  //         config
-  //       );
-  //       console.log(res);
-  //     } catch (error) {
-  //       setError("error activation");
-  //     }
-  //   };
-
-  async function login(username, password) {
-    console.log(username, password);
+  async function login(email, password) {
+    console.log(email, password);
     const config = {
       headers: { "Content-Type": "multipart/form-data" },
     };
     let formData = new FormData();
-    formData.append("email", username);
+    formData.append("email", email);
     formData.append("password", password);
     try {
       let res = await axios.post(`${AUTH_API}api/login/`, formData, config);
       localStorage.setItem("token", JSON.stringify(res.data));
-      localStorage.setItem("username", username);
-      setUser(username);
+      localStorage.setItem("email", email);
+      console.log(res.data);
+      console.log(email);
+      setUser(email);
     } catch (error) {
       setError("error occured");
     }
@@ -127,12 +108,15 @@ const AuthContextProvider = ({ children }) => {
     setUser("");
   }
 
-  const forgot_password = async (email) => {
+  const forgotPassword = async (email) => {
     const config = {
       headers: { "Content-Type": "multipart/form-data" },
     };
     let formData = new FormData();
+    console.log(email);
     formData.append("email", email);
+    console.log(FormData);
+
     try {
       const res = await axios.post(
         `${AUTH_API}forgot-password/`,
@@ -183,7 +167,7 @@ const AuthContextProvider = ({ children }) => {
         login,
         checkAuth,
         logout,
-        forgot_password,
+        forgotPassword,
         resetPassword,
       }}
     >
