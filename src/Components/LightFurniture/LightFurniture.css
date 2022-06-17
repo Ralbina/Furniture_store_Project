@@ -1,4 +1,8 @@
 .textDiv {
   text-align: center;
   justify-content: center;
+  color: #154444;
+}
+.bigTextModern {
+  font-size: 60px;
 }
