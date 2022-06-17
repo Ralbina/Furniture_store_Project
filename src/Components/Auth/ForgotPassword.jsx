@@ -109,7 +109,7 @@ const ForgotPassword = () => {
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
                 handleForgotPssword(email);
-                // navigate("/done");
+                navigate("/resetPassword");
               }}
             >
               Send
