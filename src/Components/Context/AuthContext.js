@@ -43,8 +43,6 @@ const AuthContextProvider = ({ children }) => {
         config
       );
       console.log(res);
-      alert("ok");
-      //   alertToastify("All good");
       navigate("/done");
     } catch (e) {
       alertToastify(e);
@@ -54,20 +52,24 @@ const AuthContextProvider = ({ children }) => {
   };
 
   async function login(email, password) {
-    console.log(email, password);
     const config = {
       headers: { "Content-Type": "multipart/form-data" },
     };
     let formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
+    console.log(formData);
     try {
       let res = await axios.post(`${AUTH_API}api/login/`, formData, config);
       localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("email", email);
+      localStorage.setItem("password", password);
+
       console.log(res.data);
       console.log(email);
-      setUser(email);
+      console.log(password);
+      setUser(email, password);
+      navigate("/");
     } catch (error) {
       setError("error occured");
     }
@@ -150,7 +152,9 @@ const AuthContextProvider = ({ children }) => {
       );
       localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("activate_code", activate_code);
-      setUser(activate_code);
+      localStorage.setItem("password", password);
+      localStorage.setItem("password_confirm", password_confirm);
+      setUser(activate_code, password, password_confirm);
       navigate("/");
     } catch (error) {
       setError("error occured");

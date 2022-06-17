@@ -181,12 +181,6 @@ export default function Registration() {
               Register
             </Button>
 
-            {user.email === userAdmin ? (
-              <NavLink className="nav-link" to="/add">
-                <p variant="contained">Add Produts</p>
-              </NavLink>
-            ) : null}
-
             <ToastContainer
               position="top-center"
               autoClose={5000}
