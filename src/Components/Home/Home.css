@@ -175,7 +175,7 @@ body {
   justify-content: center;
   margin: 50px;
 }
-.button {
+.buttonWrap {
   min-width: 300px;
   min-height: 60px;
   font-family: "Nunito", sans-serif;
@@ -196,33 +196,32 @@ body {
   margin: 40px;
 }
 
-button::before {
+buttonWrap::before {
   content: "";
   border-radius: 1000px;
   min-width: calc(300px + 12px);
   min-height: calc(60px + 12px);
   border: 6px solid #154444;
   box-shadow: 0 0 60px #154444;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  /* position: absolute; */
+  /* top: 50%; */
   transform: translate(-50%, -50%);
   opacity: 0;
   transition: all 0.3s ease-in-out 0s;
 }
 
-.button:hover,
-.button:focus {
+.buttonWrap:hover,
+.buttonWrap:focus {
   color: black;
   transform: translateY(-6px);
 }
 
-.button:hover::before,
-.button:focus::before {
+.buttonWrap:hover::before,
+.buttonWrap:focus::before {
   opacity: 1;
 }
 
-.button::after {
+.buttonWrap::after {
   content: "";
   width: 30px;
   height: 30px;
