@@ -39,14 +39,14 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function Login() {
-  //   const handleSubmit = (event) => {
-  //     event.preventDefault();
-  //     const data = new FormData(event.currentTarget);
-  //     console.log({
-  //       email: data.get('email'),
-  //       password: data.get('password'),
-  //     });
-  //   };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //   });
+  // };
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -56,7 +56,7 @@ export default function Login() {
   function handleLogin(email, password) {
     login(email, password)
       .then(() => {
-        navigate("/");
+        // navigate("/");
       })
       .catch((error) => {
         alert(error.response?.data?.detail);

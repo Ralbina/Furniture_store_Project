@@ -22,7 +22,7 @@ const MainRoutes = () => {
       <Route path="/done" element={<Done />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot_password" element={<ForgotPassword />} />
-      <Route path="/resetPassword/" element={<PasswordRecovery />} />
+      <Route path="/resetPassword" element={<PasswordRecovery />} />
       <Route path="/add" element={<AddProduct />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/list" element={<ProductList />} />

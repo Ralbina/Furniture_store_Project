@@ -107,8 +107,11 @@ export default function PrimarySearchAppBar() {
     >
       {!user ? (
         <>
+          {/* <MenuItem onClick={() => window.open("/register")}>
+            REGISTRATION
+          </MenuItem> */}
+
           <MenuItem onClick={handleMenuClose}>LOGIN</MenuItem>
-          <MenuItem onClick={handleMenuClose}>REGISTRATION</MenuItem>
         </>
       ) : (
         <MenuItem onClick={logout}>Logout</MenuItem>
@@ -175,15 +178,6 @@ export default function PrimarySearchAppBar() {
         sx={{ bgcolor: "white", color: "rgb(59 131 115)" }}
       >
         <Toolbar>
-          <img className="logo" src={logo} />
-          {/* <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ display: { xs: "none", sm: "block" } }}
-          >
-            MUI
-          </Typography> */}
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
