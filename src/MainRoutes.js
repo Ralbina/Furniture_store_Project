@@ -3,6 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import AboutUs from "./Components/AboutUs/AboutUs";
 import AddProduct from "./Components/Admin/AddProduct";
 import EditProduct from "./Components/Admin/EditProduct";
+import Done from "./Components/Auth/Done";
+import ForgotPassword from "./Components/Auth/ForgotPassword";
+import Login from "./Components/Auth/Login";
+import Registration from "./Components/Auth/Registration";
 import Home from "./Components/Home/Home";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import ProductList from "./Components/ProductList/ProductList";
@@ -11,6 +15,10 @@ const MainRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/register" element={<Registration />} />
+      <Route path="/done" element={<Done />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/forgot_password" element={<ForgotPassword />} />
       <Route path="/add" element={<AddProduct />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/list" element={<ProductList />} />
