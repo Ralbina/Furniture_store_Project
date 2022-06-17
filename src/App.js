@@ -5,6 +5,7 @@ import ProductContextProvider from "./Components/Context/ProductContext";
 import Navbar from "./Components/Navbar/Navbar";
 import MainRoutes from "./MainRoutes";
 import Footer from "./Components/Footer/Footer";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   return (
@@ -13,6 +14,8 @@ function App() {
         <ProductContextProvider>
           <Navbar />
           <MainRoutes />
+
+          <ToastContainer />
         </ProductContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
