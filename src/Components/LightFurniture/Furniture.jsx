@@ -43,7 +43,7 @@ export default function Furniture() {
   return (
     <div>
       <div className="textDiv">
-        <p className="bigText">MODERN FURNITURE </p>
+        <p className="bigTextModern">MODERN FURNITURE </p>
         <h3 className="textFur">
           Bedrooms, Dining rooms, Living rooms, Bathroom furniture, Kitchens,
           Offices, Furniture for Kids, Auxiliary and Outdoor furniture for any

@@ -131,7 +131,7 @@ export default function Home() {
       </div>
       <div className="wrap">
         <NavLink to="/list">
-          <button className="button">Go To Shop</button>
+          <button className="buttonWrap">Go To Shop</button>
         </NavLink>
       </div>
 
