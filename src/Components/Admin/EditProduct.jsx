@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
-// import "../../Components/Admin/";
+import "../Admin/EditProduct.css";
 
 const EditProduct = () => {
   const { getProductDetails, productDetails, saveEditedProduct } =
@@ -36,8 +36,18 @@ const EditProduct = () => {
   };
 
   return (
-    <div>
-      <Box sx={{ width: "60vw", margin: "10vh auto" }}>
+    <div className="editPage">
+      <Box
+        sx={{
+          width: "40vw",
+          p: "6vh 1vw",
+          ml: "34vw",
+          my: "8vh",
+          mt: "0vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <TextField
           sx={{ marginBottom: "10px", borderColor: "black" }}
           fullWidth
@@ -49,8 +59,6 @@ const EditProduct = () => {
           value={product.name || ""}
           onChange={handleInp}
         />
-
-        <Input type="file" onChange={handleInpFile} />
 
         <TextField
           sx={{
@@ -112,6 +120,7 @@ const EditProduct = () => {
           value={product.description || ""}
           onChange={handleInp}
         />
+        <Input type="file" onChange={handleInpFile} />
 
         <Button
           sx={{

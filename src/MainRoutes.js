@@ -9,6 +9,8 @@ import Login from "./Components/Auth/Login";
 import PasswordRecovery from "./Components/Auth/PasswordRecovery";
 import Registration from "./Components/Auth/Registration";
 import Home from "./Components/Home/Home";
+import Furniture from "./Components/LightFurniture/Furniture";
+import LightFurniture from "./Components/LightFurniture/LightFurniture";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import ProductList from "./Components/ProductList/ProductList";
 
@@ -20,12 +22,14 @@ const MainRoutes = () => {
       <Route path="/done" element={<Done />} />
       <Route path="/login" element={<Login />} />
       <Route path="/forgot_password" element={<ForgotPassword />} />
-      <Route path="/resetPassword/" element={<PasswordRecovery />} />
+      <Route path="/resetPassword" element={<PasswordRecovery />} />
       <Route path="/add" element={<AddProduct />} />
       <Route path="/edit/:id" element={<EditProduct />} />
       <Route path="/list" element={<ProductList />} />
       <Route path="/details/:id" element={<ProductDetails />} />
       <Route path="/aboutus" element={<AboutUs />} />
+      <Route path="/light" element={<LightFurniture />} />
+      <Route path="/furniture" element={<Furniture />} />
     </Routes>
   );
 };

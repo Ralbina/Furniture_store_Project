@@ -47,12 +47,7 @@ const ProductList = () => {
             return (
               <Card sx={{ maxWidth: 500 }}>
                 <CardActionArea>
-                  <CardMedia
-                    component="img"
-                    height="140"
-                    image="/static/images/cards/contemplative-reptile.jpg"
-                    alt="green iguana"
-                  />
+                  <CardMedia component="img" height="300" image={item.image} />
                   <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
                       {item.name}

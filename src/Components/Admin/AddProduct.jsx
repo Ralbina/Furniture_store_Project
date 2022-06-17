@@ -116,23 +116,9 @@ const AddProduct = () => {
           size="small"
           onChange={handleInp}
         />
-        <TextField
-          className="inp5"
-          sx={{
-            marginBottom: "10px",
-            borderColor: "black",
-            backgroundColor: "whitesmoke",
-          }}
-          id="outlined-basic"
-          label="Изображение"
-          variant="outlined"
-          name="image"
-          size="small"
-          onChange={handleInp}
-        />
 
         <TextField
-          className="inp6"
+          className="inp5"
           sx={{
             marginBottom: "10px",
             borderColor: "black",
@@ -146,7 +132,7 @@ const AddProduct = () => {
           onChange={handleInp}
         />
 
-        {/* <Input className="inpPhoto" type="file" onChange={handleInpFile} /> */}
+        <Input className="inpPhoto" type="file" onChange={handleInpFile} />
         <Button
           className="btnList"
           sx={{
