@@ -48,6 +48,7 @@ const ProductContextProvider = ({ children }) => {
 
   const getProductDetails = async (id) => {
     const { data } = await axios(`${API}/${id}/`);
+    console.log(data);
     dispatch({
       type: ACTIONS.GET_PRODUCT_DETAILS,
       payload: data,
@@ -178,7 +179,7 @@ const ProductContextProvider = ({ children }) => {
         // Authorization: `Bearer ${token.access}`,
       },
     };
-    let { data } = await axios(`${API}${id}`);
+    let { data } = await axios(`${API}/${id}`);
 
     dispatch({
       type: ACTIONS.GET_COMMENTS,

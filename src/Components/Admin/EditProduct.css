@@ -1,0 +1,7 @@
+.editPage {
+  background-image: url(/src/assets/image/editpin.jpg);
+  width: 1440px;
+  height: 800px;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
