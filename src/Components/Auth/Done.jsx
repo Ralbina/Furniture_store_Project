@@ -11,7 +11,7 @@ const Done = () => {
           You have successfully registered, please confirm your registration by
           e-mail.
         </p>
-        <NavLink to="/">
+        <NavLink to="/login">
           <p
             className="pDone"
             //   onClick={() => {

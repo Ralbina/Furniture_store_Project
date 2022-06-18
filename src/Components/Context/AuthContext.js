@@ -150,10 +150,12 @@ const AuthContextProvider = ({ children }) => {
         formData,
         config
       );
-      localStorage.setItem("token", JSON.stringify(res.data));
+      // localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("activate_code", activate_code);
       localStorage.setItem("password", password);
       localStorage.setItem("password_confirm", password_confirm);
+      console.log(activate_code, password, password_confirm);
+
       setUser(activate_code, password, password_confirm);
       navigate("/");
     } catch (error) {
