@@ -31,11 +31,11 @@ const Cart = () => {
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Фото</TableCell>
-                  <TableCell align="right">Название</TableCell>
-                  <TableCell align="right">Цена</TableCell>
-                  <TableCell align="right">Количество</TableCell>
-                  <TableCell align="right">Сумма продукта</TableCell>
+                  <TableCell>Img</TableCell>
+                  <TableCell align="right">Name</TableCell>
+                  <TableCell align="right">Price</TableCell>
+                  <TableCell align="right">Count</TableCell>
+                  <TableCell align="right">SubPrice</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
