@@ -11,14 +11,21 @@ import {
   Button,
   CardContent,
 } from "@mui/material";
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
-import { NavLink, useSearchParams } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { cartContext } from "../Context/CartContext";
+import { favoriteContext } from "../Context/FavoriteContext";
 
 const ProductList = () => {
   const { products, getProducts, page, setPage, count } = useProducts();
   const [searchParams] = useSearchParams();
+  const { addProductToCart } = useContext(cartContext);
+  const { addProductToFavorite } = useContext(favoriteContext);
+  const navigate = useNavigate();
   console.log(products.results);
   useEffect(() => {
     getProducts();
@@ -58,11 +65,41 @@ const ProductList = () => {
                   </CardContent>
                 </CardActionArea>
                 <CardActions>
-                  <NavLink to={`/details/${item.id}`}>
+                  {/* //! !!!!!!!!!!!!!!!! измен в "подроб" и доб addProductToCart */}
+                  <Button
+                    onClick={() => {
+                      addProductToCart(item);
+                    }}
+                    variant="contained"
+                    color="secondary"
+                    startIcon={<AddShoppingCartIcon />}
+                    fullWidth={true}
+                    sx={{ mt: "20px", height: "50px" }}
+                  >
+                    Add to Cart
+                  </Button>
+
+                  <Button
+                    onClick={() => addProductToFavorite(item)}
+                    aria-label="add to favorites"
+                  >
+                    <FavoriteIcon />
+                  </Button>
+
+                  <Button
+                    onClick={() => {
+                      navigate(`/details/${item.id}`);
+                    }}
+                    size="small"
+                    color="primary"
+                  >
+                    Подробнее
+                  </Button>
+                  {/* <NavLink to={`/details/${item.id}`}>
                     <Button size="small" color="primary">
                       Подробнее
                     </Button>
-                  </NavLink>
+                  </NavLink> */}
                 </CardActions>
               </Card>
             );

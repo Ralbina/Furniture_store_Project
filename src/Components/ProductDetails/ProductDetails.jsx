@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import { useState } from "react";
 import trash from "../../assets/image/trash.svg";
 import edit from "../../assets/image/edit.svg";
 import "./ProductDetails.css";
+import { cartContext } from "../Context/CartContext";
+import { Button } from "@mui/material";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import { favoriteContext } from "../Context/FavoriteContext";
 
 const ProductDetails = ({ item }) => {
   const { id } = useParams();
@@ -21,10 +26,14 @@ const ProductDetails = ({ item }) => {
     deleteComment,
   } = useProducts();
 
+  const { addProductToCart } = useContext(cartContext);
+  const { addProductToFavorite } = useContext(favoriteContext);
+
   useEffect(() => {
     getProductDetails(id);
     // getComments(id);
   }, []);
+  const navigate = useNavigate();
 
   const [com, setCom] = useState("");
 
@@ -72,12 +81,52 @@ const ProductDetails = ({ item }) => {
           </div>
         </div>
         <div data-aos="fade-up" className="topicDetailsButtons">
-          <NavLink to={`/edit/${id}`}>
+          {/* //!!!!!!!!!!!!!!!!! изменения в edit / delete и добавила addProductToCart */}
+
+          <Button
+            onClick={() => addProductToFavorite(item)}
+            aria-label="add to favorites"
+          >
+            <FavoriteIcon />
+          </Button>
+          <Button
+            onClick={() => {
+              addProductToCart(productDetails);
+              navigate("/list");
+            }}
+            variant="contained"
+            color="secondary"
+            startIcon={<AddShoppingCartIcon />}
+            fullWidth={true}
+            sx={{ mt: "20px", height: "50px" }}
+          >
+            Add to Cart
+          </Button>
+          <Button
+            onClick={() => {
+              navigate(`/edit/${id}`);
+            }}
+            className="btnCrud"
+            id="edit"
+          >
+            <img src={edit} alt="edit" />
+          </Button>
+          <Button
+            className="btnCrud"
+            id="del"
+            onClick={() => {
+              deleteProduct(id);
+              navigate("/list");
+            }}
+          >
+            <img src={trash} alt="trash" />
+          </Button>
+          {/* <NavLink to={`/edit/${id}`}>
             <button className="btnCrud" id="edit">
               <img src={edit} alt="edit" />
             </button>
-          </NavLink>
-          <NavLink to="/list">
+          </NavLink> */}
+          {/* <NavLink to="/list">
             <button
               className="btnCrud"
               id="del"
@@ -85,7 +134,7 @@ const ProductDetails = ({ item }) => {
             >
               <img src={trash} alt="trash" />
             </button>
-          </NavLink>
+          </NavLink> */}
         </div>
       </div>
     </>

@@ -1,0 +1,12 @@
+.favorite1 {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.btn {
+  color: #cb3589;
+}
+.favorite {
+  padding-top: 30px;
+  padding-bottom: 30px;
+}

@@ -16,8 +16,14 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import logo from "../../assets/image/logo.png";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import { Button } from "@mui/material";
+import { userAdmin } from "../../helpers/const";
+import { favoriteContext } from "../Context/FavoriteContext";
+import { cartContext } from "../Context/CartContext";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -64,6 +70,8 @@ export default function PrimarySearchAppBar() {
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
+  const { favoriteLenght } = React.useContext(favoriteContext);
+  const { cartLenght } = React.useContext(cartContext);
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -107,10 +115,6 @@ export default function PrimarySearchAppBar() {
     >
       {!user ? (
         <>
-          {/* <MenuItem onClick={() => window.open("/register")}>
-            REGISTRATION
-          </MenuItem> */}
-
           <MenuItem onClick={handleMenuClose}>LOGIN</MenuItem>
         </>
       ) : (
@@ -136,6 +140,36 @@ export default function PrimarySearchAppBar() {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <MenuItem>
+        <IconButton
+          size="large"
+          color="inherit"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/favorite");
+          }}
+        >
+          <Badge badgeContent={favoriteLenght} color="secondary">
+            <FavoriteIcon />
+          </Badge>
+        </IconButton>
+        <p>Favorite</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          aria-label="show 17 new notifications"
+          color="inherit"
+          onClick={() => {
+            navigate("/cart");
+          }}
+        >
+          <Badge badgeContent={cartLenght} color="secondary">
+            <ShoppingCartIcon />
+          </Badge>
+        </IconButton>
+        <p>Cart</p>
+      </MenuItem>
       <MenuItem>
         <IconButton size="large" aria-label="show 4 new mails" color="inherit">
           <Badge badgeContent={4} color="error">
@@ -189,12 +223,57 @@ export default function PrimarySearchAppBar() {
           </Search>
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            {/* <Button
+              onClick={() => {
+                navigate("/add");
+              }}
+            >
+              <p variant="contained">Add Produts</p>
+            </Button> */}
+            {}
+            {user.email === "admin@admin.com" ? (
+              <Button
+                onClick={() => {
+                  navigate("/add");
+                }}
+              >
+                <p variant="contained">Add Produts</p>
+              </Button>
+            ) : // <NavLink className="nav-link" to="/add">
+            //   <p variant="contained">Add Produts</p>
+            // </NavLink>
+            null}
+            <IconButton
+              size="large"
+              color="inherit"
+              aria-label="add to favorites"
+              onClick={() => {
+                navigate("/favorite");
+              }}
+            >
+              <Badge badgeContent={favoriteLenght} color="secondary">
+                <FavoriteIcon />
+              </Badge>
+            </IconButton>
+
+            <IconButton
+              size="large"
+              aria-label="show 17 new notifications"
+              color="inherit"
+              onClick={() => {
+                navigate("/cart");
+              }}
+            >
+              <Badge badgeContent={cartLenght} color="secondary">
+                <ShoppingCartIcon />
+              </Badge>
+            </IconButton>
             <IconButton
               size="large"
               aria-label="show 4 new mails"
               color="inherit"
             >
-              <Badge badgeContent={4} color="error">
+              <Badge badgeContent={1} color="error">
                 <MailIcon />
               </Badge>
             </IconButton>

@@ -6,16 +6,22 @@ import Navbar from "./Components/Navbar/Navbar";
 import MainRoutes from "./MainRoutes";
 import Footer from "./Components/Footer/Footer";
 import { ToastContainer } from "react-toastify";
+import CartContextProvider from "./Components/Context/CartContext";
+import FavoriteContextProvider from "./Components/Context/FavoriteContext";
 
 function App() {
   return (
     <BrowserRouter>
       <AuthContextProvider>
-        <ProductContextProvider>
-          <Navbar />
-          <MainRoutes />
-          <ToastContainer />
-        </ProductContextProvider>
+        <CartContextProvider>
+          <FavoriteContextProvider>
+            <ProductContextProvider>
+              <Navbar />
+              <MainRoutes />
+              <ToastContainer />
+            </ProductContextProvider>
+          </FavoriteContextProvider>
+        </CartContextProvider>
       </AuthContextProvider>
     </BrowserRouter>
   );

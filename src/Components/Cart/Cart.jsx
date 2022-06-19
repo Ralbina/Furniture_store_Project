@@ -49,11 +49,11 @@ const Cart = () => {
                         className="cart-img"
                         component="img"
                         height="194"
-                        image={elem.item.img1}
-                        alt={elem.item.title}
+                        image={elem.item.image}
+                        alt={elem.item.name}
                       />
                     </TableCell>
-                    <TableCell align="right">{elem.item.title}</TableCell>
+                    <TableCell align="right">{elem.item.name}</TableCell>
                     <TableCell align="right">{elem.item.price}</TableCell>
 
                     <TableCell align="right">

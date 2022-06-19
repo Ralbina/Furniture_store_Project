@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   calcSubPrice,
   calcTotalPrice,
@@ -24,6 +25,8 @@ const reducer = (state = INIT_STATE, action) => {
 };
 
 const CartContextProvider = ({ children }) => {
+  const navigate = useNavigate();
+
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
   const addProductToCart = (productItem) => {
@@ -52,6 +55,7 @@ const CartContextProvider = ({ children }) => {
       });
     } else {
       cart.products.push(newProduct);
+      navigate("/list");
     }
 
     newProduct.subPrice = calcSubPrice(newProduct);
