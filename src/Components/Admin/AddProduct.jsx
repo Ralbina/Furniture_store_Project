@@ -97,21 +97,6 @@ const AddProduct = () => {
           label="Тип товара"
         />
 
-        {/* <TextField
-          className="inp2"
-          sx={{
-            marginBottom: "10px",
-            borderColor: "black",
-            backgroundColor: "whitesmoke",
-          }}
-          id="outlined-basic"
-          label="Товарная позиция"
-          variant="outlined"
-          name="type"
-          size="small"
-          onChange={handleInp}
-          
-        /> */}
         <TextField
           className="inp3"
           sx={{
