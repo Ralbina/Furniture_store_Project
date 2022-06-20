@@ -18,6 +18,11 @@ import MoreIcon from "@mui/icons-material/MoreVert";
 import logo from "../../assets/image/logo.png";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { favoriteContext } from "../Context/FavoriteContext";
+import { cartContext } from "../Context/CartContext";
+import { productContext } from "../Context/ProductContext";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -62,6 +67,9 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
+  const { favoriteLenght } = React.useContext(favoriteContext);
+  const { cartLenght } = React.useContext(cartContext);
+  const { searchFilter } = React.useContext(productContext);
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
@@ -107,10 +115,6 @@ export default function PrimarySearchAppBar() {
     >
       {!user ? (
         <>
-          {/* <MenuItem onClick={() => window.open("/register")}>
-            REGISTRATION
-          </MenuItem> */}
-
           <MenuItem onClick={handleMenuClose}>LOGIN</MenuItem>
         </>
       ) : (
@@ -137,12 +141,19 @@ export default function PrimarySearchAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
+        <IconButton
+          size="large"
+          color="inherit"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/favorite");
+          }}
+        >
+          <Badge badgeContent={favoriteLenght} color="secondary">
+            <FavoriteIcon />
           </Badge>
         </IconButton>
-        <p>Messages</p>
+        <p>Favorite</p>
       </MenuItem>
       <MenuItem>
         <IconButton
@@ -150,11 +161,17 @@ export default function PrimarySearchAppBar() {
           aria-label="show 17 new notifications"
           color="inherit"
         >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
+          <Badge
+            badgeContent={cartLenght}
+            color="error"
+            onClick={() => {
+              navigate("/cart");
+            }}
+          >
+            <ShoppingCartIcon />
           </Badge>
         </IconButton>
-        <p>Notifications</p>
+        <p>Cart</p>
       </MenuItem>
       <MenuItem onClick={handleProfileMenuOpen}>
         <IconButton
@@ -178,7 +195,7 @@ export default function PrimarySearchAppBar() {
         sx={{ bgcolor: "white", color: "rgb(59 131 115)" }}
       >
         <Toolbar>
-          <Search>
+          <Search onClick={() => searchFilter}>
             <SearchIconWrapper>
               <SearchIcon />
             </SearchIconWrapper>
@@ -191,22 +208,30 @@ export default function PrimarySearchAppBar() {
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <IconButton
               size="large"
-              aria-label="show 4 new mails"
               color="inherit"
+              aria-label="add to favorites"
+              onClick={() => {
+                navigate("/favorite");
+              }}
             >
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
+              <Badge badgeContent={favoriteLenght} color="secondary">
+                <FavoriteIcon />
               </Badge>
             </IconButton>
+
             <IconButton
               size="large"
               aria-label="show 17 new notifications"
               color="inherit"
+              onClick={() => {
+                navigate("/cart");
+              }}
             >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
+              <Badge badgeContent={cartLenght} color="secondary">
+                <ShoppingCartIcon />
               </Badge>
             </IconButton>
+
             <IconButton
               size="large"
               edge="end"

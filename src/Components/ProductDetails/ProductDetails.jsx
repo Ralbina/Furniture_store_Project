@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useEffect } from "react";
-import { NavLink, useParams } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import { useState } from "react";
 import trash from "../../assets/image/trash.svg";
 import edit from "../../assets/image/edit.svg";
 import "./ProductDetails.css";
+import { cartContext } from "../Context/CartContext";
+import { favoriteContext } from "../Context/FavoriteContext";
+import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import { Button } from "@mui/material";
 
 const ProductDetails = ({ item }) => {
+  const { addProductToCart } = useContext(cartContext);
+  const { addProductToFavorite } = useContext(favoriteContext);
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const {
@@ -72,20 +80,32 @@ const ProductDetails = ({ item }) => {
           </div>
         </div>
         <div data-aos="fade-up" className="topicDetailsButtons">
-          <NavLink to={`/edit/${id}`}>
-            <button className="btnCrud" id="edit">
-              <img src={edit} alt="edit" />
-            </button>
-          </NavLink>
-          <NavLink to="/list">
-            <button
-              className="btnCrud"
-              id="del"
-              onClick={() => deleteProduct(id)}
-            >
-              <img src={trash} alt="trash" />
-            </button>
-          </NavLink>
+          <Button onClick={() => addProductToCart(productDetails)}>
+            <AddShoppingCartIcon />
+          </Button>
+          <Button
+            onClick={() => addProductToFavorite(productDetails)}
+            aria-label="add to favorites"
+          >
+            <FavoriteIcon />
+          </Button>
+          <Button
+            onClick={() => navigate(`/edit/${id}`)}
+            className="btnCrud"
+            id="edit"
+          >
+            <img src={edit} alt="edit" />
+          </Button>
+          <Button
+            className="btnCrud"
+            id="del"
+            onClick={() => {
+              deleteProduct(id);
+              navigate("/list");
+            }}
+          >
+            <img src={trash} alt="trash" />
+          </Button>
         </div>
       </div>
     </>

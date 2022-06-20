@@ -9,6 +9,7 @@ import Login from "./Components/Auth/Login";
 import PasswordRecovery from "./Components/Auth/PasswordRecovery";
 import Registration from "./Components/Auth/Registration";
 import Cart from "./Components/Cart/Cart";
+import Favorite from "./Components/Favorite/Favorite";
 import Home from "./Components/Home/Home";
 import Furniture from "./Components/LightFurniture/Furniture";
 import LightFurniture from "./Components/LightFurniture/LightFurniture";
@@ -32,6 +33,7 @@ const MainRoutes = () => {
       <Route path="/light" element={<LightFurniture />} />
       <Route path="/furniture" element={<Furniture />} />
       <Route path="/cart" element={<Cart />} />
+      <Route path="/favorite" element={<Favorite />} />
     </Routes>
   );
 };
