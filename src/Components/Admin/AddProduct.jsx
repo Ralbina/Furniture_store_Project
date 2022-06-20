@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import "../Admin/AddProduct.css";
+import Select from "react-select";
 
 const AddProduct = () => {
   const { addProduct } = useProducts();
@@ -17,6 +18,20 @@ const AddProduct = () => {
     description: "",
     image: "",
   });
+
+  const options = [
+    { value: "wardrobes", label: "ШКАФ" },
+    { value: "bedroom-sets", label: "СПАЛЬНИ" },
+    { value: "hallways", label: "ПРИХОЖИЕ" },
+    { value: "kitchens", label: "КУХНИ" },
+    { value: "tv-stand", label: "TV ТУМБЫ" },
+    { value: "dressers", label: "КОМОДЫ" },
+    { value: "living-room-sets", label: "ГОСТИНЫЕ" },
+    { value: "children-sets", label: "ДЕТСКИЕ & ОФИС" },
+    { value: "cushioned-furniture", label: "МЯГКАЯ МЕБЕЛЬ" },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState(null);
 
   const handleInp = (e) => {
     if (e.target.name === "price") {
@@ -67,6 +82,7 @@ const AddProduct = () => {
             borderColor: "black",
             backgroundColor: "whitesmoke",
           }}
+          s
           id="outlined-basic"
           label="Наименование"
           variant="outlined"
@@ -74,20 +90,14 @@ const AddProduct = () => {
           size="small"
           onChange={handleInp}
         />
-        <TextField
-          className="inp2"
-          sx={{
-            marginBottom: "10px",
-            borderColor: "black",
-            backgroundColor: "whitesmoke",
-          }}
-          id="outlined-basic"
-          label="Товарная позиция"
-          variant="outlined"
-          name="type"
-          size="small"
-          onChange={handleInp}
+
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
+          label="Тип товара"
         />
+
         <TextField
           className="inp3"
           sx={{
@@ -116,7 +126,6 @@ const AddProduct = () => {
           size="small"
           onChange={handleInp}
         />
-
         <TextField
           className="inp5"
           sx={{
@@ -131,7 +140,6 @@ const AddProduct = () => {
           size="small"
           onChange={handleInp}
         />
-
         <Input className="inpPhoto" type="file" onChange={handleInpFile} />
         <Button
           className="btnList"

@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { useState } from "react";
 import { useReducer } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+
 export const productContext = createContext();
 export const useProducts = () => {
   return useContext(productContext);
@@ -30,10 +31,12 @@ const ProductContextProvider = ({ children }) => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
+
   const [count, setCount] = useState(8);
+
   const getProducts = async () => {
     const { data } = await axios(`${API}/?page=${page}`);
-    setCount(Math.ceil(data.count / 1));
+    setCount(Math.ceil(data.count / 8));
     dispatch({
       type: ACTIONS.GET_PRODUCTS,
       payload: data,
@@ -75,6 +78,7 @@ const ProductContextProvider = ({ children }) => {
   const saveEditedProduct = async (newProduct) => {
     let token = JSON.parse(localStorage.getItem("token"));
     const Authorization = `Bearer ${token.access}`;
+
     let newEditProduct = new FormData();
     newEditProduct.append("name", newProduct.name);
     newEditProduct.append("type", newProduct.type);
@@ -91,31 +95,6 @@ const ProductContextProvider = ({ children }) => {
     });
     getProducts();
   };
-
-  //   const fetchByParams = async (value) => {
-  //     if (value === "all") {
-  //       getProducts();
-  //     } else if (value === "5" || value === "7" || value === "10") {
-  //       const { data } = await axios(
-  //         `http://34.88.61.26/api/v1/doctors/?experience_min=${value}`
-  //       );
-  //       console.log(value);
-  //       console.log(data);
-  //       dispatch({
-  //         type: ACTIONS.GET_PRODUCTS,
-  //         payload: data,
-  //       });
-  //     } else {
-  //       const { data } = await axios(
-  //         `http://34.88.61.26/api/v1/doctors/?speciality=${value}`
-  //       );
-
-  //       dispatch({
-  //         type: ACTIONS.GET_PRODUCTS,
-  //         payload: data,
-  //       });
-  //     }
-  //   };
 
   const fetchByParams = async (query, value) => {
     if (value === "all") {
