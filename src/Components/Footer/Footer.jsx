@@ -11,7 +11,7 @@ const Footer = () => {
       <div className="footer1">
         <div>
           <p className="bigText1">DudeShape</p>
-          <p>
+          <p className="textFooter1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod
             tempor incididunt ut labore at dolore.
           </p>
@@ -39,7 +39,7 @@ const Footer = () => {
         </div>
         <div>
           <p className="bigText1">Subscribe</p>
-          <p>Subscribe to get the latest news from us</p>
+          <p className="textSubs">Subscribe to get the latest news from us</p>
           <img className="scanImg" src={scan} />
         </div>
       </div>
