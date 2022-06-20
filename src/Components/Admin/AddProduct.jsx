@@ -82,6 +82,7 @@ const AddProduct = () => {
             borderColor: "black",
             backgroundColor: "whitesmoke",
           }}
+          s
           id="outlined-basic"
           label="Наименование"
           variant="outlined"
