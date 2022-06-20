@@ -32,6 +32,8 @@ const ProductList = () => {
     setPage(p);
   };
 
+  console.log(products.results, "results in list");
+
   return (
     <Grid item>
       <Box
