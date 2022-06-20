@@ -1,0 +1,9 @@
+.btn {
+  color: #cb3589;
+}
+.totalPrice {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+  padding-top: 20px;
+}

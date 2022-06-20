@@ -1,16 +1,18 @@
 .footer1 {
   background-color: #154444;
-  color: #fff;
+  color: #548686;
   display: flex;
   justify-content: space-around;
 }
 .bigText1 {
-  font-size: large;
+  font-size: 60;
+  color: rgb(169, 163, 163);
 }
 .containerFooter {
   background-color: #154444;
-  color: #fff;
+  color: #698484;
   text-align: center;
+  font-size: 20px;
 }
 .footer2 {
   border-top: 1px rgb(174, 170, 170) solid;
@@ -18,4 +20,54 @@
 }
 .scanImg {
   width: 50%;
+}
+.textFooter1 {
+  width: 300px;
+  color: #548686;
+}
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .containerFooter {
+    font-size: 15px;
+  }
+  .textFooter1 {
+    width: 200px;
+  }
+  .textSubs {
+    width: 200px;
+  }
+}
+@media (min-width: 480px) and (max-width: 767.98px) {
+  .containerFooter {
+    font-size: 10px;
+  }
+  .textFooter1 {
+    width: 150px;
+  }
+  .textSubs {
+    width: 150px;
+  }
+}
+@media (min-width: 320px) and (max-width: 479.98px) {
+  .containerFooter {
+    font-size: 8px;
+  }
+  .textFooter1 {
+    width: 100px;
+  }
+  .textSubs {
+    padding-left: 30px;
+    width: 100px;
+  }
+}
+@media (max-width: 319.98px) {
+  .containerFooter {
+    font-size: 8px;
+  }
+  .textFooter1 {
+    width: 80px;
+  }
+  .textSubs {
+    padding-left: 30px;
+    width: 100px;
+  }
 }

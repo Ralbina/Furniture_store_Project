@@ -173,11 +173,9 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{ bgcolor: "white", color: "rgb(59 131 115)" }}
-      >
+      <AppBar position="fixed" sx={{ color: "white", bgcolor: "#154444" }}>
         <Toolbar>
+          <img src={logo} />
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

@@ -35,8 +35,14 @@ import img7 from "../../assets/image/img7.png";
 export default function Home() {
   return (
     <>
-      {/* Swiper */}
-      <div sx={{ bgcolor: "white", color: "rgb(59 131 115)" }}>
+      {/* Swiper start */}
+      <div
+        sx={{
+          bgcolor: "white",
+          width: "100%",
+          height: "80%",
+        }}
+      >
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           <SwiperSlide>
             <img src={carousel1} />
@@ -58,7 +64,7 @@ export default function Home() {
           </SwiperSlide>
         </Swiper>
       </div>
-      {/* swiper */}
+      {/* swiper end*/}
       <div className="container1">
         <div className="texts">
           <p className="bigText">We Help You Make Modern Furniture</p>
@@ -68,7 +74,7 @@ export default function Home() {
           </p>
         </div>
         <div>
-          <img src={img1} />
+          <img className="imgContainer1" src={img1} />
         </div>
       </div>
       <div className="container2">
@@ -82,11 +88,6 @@ export default function Home() {
           <img className="cardsImg4" src={stripe} />
           <img className="cardsImg5" src={uber} />
           <img className="cardsImg6" src={airbnb} />
-          {/* <InstagramIcon />
-          <TwitterIcon />
-          <FacebookIcon />
-          <TelegramIcon />
-          <WhatsAppIcon /> */}
         </div>
       </div>
       <div className="container3">
@@ -94,7 +95,7 @@ export default function Home() {
           <p className="bigText">About Us</p>
           <p className="text">
             All of our furniture uses the best materials and choices for our
-            customers.All of our furniture uses the best materials
+            customers.
           </p>
           <p>Best Quality</p>
           <p>All of our furniture uses the best materials and choices</p>
@@ -161,7 +162,7 @@ export default function Home() {
           <img className="ellipsl" src={ellipsl} />
           <img className="img7" src={img7} />
         </div>
-        <div className="text3">
+        <div className="text6">
           <p className="bigText">Our customers are verry importan to us</p>
           <p className="text">
             All of our furniture uses the best matials and choices for our

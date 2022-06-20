@@ -14,6 +14,7 @@ function App() {
         <ProductContextProvider>
           <Navbar />
           <MainRoutes />
+          <Footer />
           <ToastContainer />
         </ProductContextProvider>
       </AuthContextProvider>

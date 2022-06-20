@@ -42,23 +42,23 @@ const theme = createTheme();
 
 export default function PasswordRecovery() {
   const navigate = useNavigate();
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get("username"),
-      email: data.get("email"),
-      password: data.get("password"),
-      password_confirm: data.get("password_confirm"),
-    });
-  };
+  // const handleSubmit = (event) => {
+  //   event.preventDefault();
+  //   const data = new FormData(event.currentTarget);
+  //   console.log({
+  //     username: data.get("username"),
+  //     email: data.get("email"),
+  //     password: data.get("password"),
+  //     password_confirm: data.get("password_confirm"),
+  //   });
+  // };
 
-  const { user } = useAuth();
+  const { user, resetPassword } = useAuth();
 
   const [activate_code, setActivate_code] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [password_confirm, setPassword_confirm] = React.useState("");
-  const { register, error } = useAuth();
+  const { error } = useAuth();
 
   const alertToastify = () => {
     toast.error("Заполните все поля!", {
@@ -72,17 +72,17 @@ export default function PasswordRecovery() {
     });
   };
 
-  function handleRegister(activate_code, password, password_confirm) {
+  function handleResetPassword(activate_code, password, password_confirm) {
     if (
       activate_code.trim() === "" ||
       password.trim() === "" ||
       password_confirm.trim() === ""
     ) {
       alertToastify();
+    } else {
+      // handleResetPassword({ activate_code, password, password_confirm });
+      resetPassword(activate_code, password, password_confirm);
     }
-
-    register({ activate_code, password, password_confirm });
-    alert("ok");
   }
 
   return (
@@ -148,7 +148,7 @@ export default function PasswordRecovery() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
-                handleRegister(password, password_confirm);
+                handleResetPassword(activate_code, password, password_confirm);
                 navigate("/");
               }}
             >
