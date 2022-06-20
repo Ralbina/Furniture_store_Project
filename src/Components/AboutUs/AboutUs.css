@@ -8,18 +8,21 @@
   color: #154444;
   justify-content: unset;
   text-align: center;
+  padding: 0 100px 0 100px;
 }
 .containerAboutUs8 {
   display: flex;
   color: #154444;
-  justify-content: space-around;
+  justify-content: space-between;
   margin-top: 50px;
+  padding: 0 100px 0 100px;
 }
 .containerAboutUs1 {
   text-align: center;
-  padding: 50px 200px 50px 200px;
+  padding: 20px 100px 50px 100px;
   border: 6px solid #154444;
   border-radius: 80px;
+  margin: 100px;
 }
 
 .imgAboutUs {

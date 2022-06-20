@@ -136,10 +136,7 @@ const AboutUs = () => {
             www.buyfurnitureinspain.com
           </p>
         </div>
-        <div>
-          <p>Scan QR Code and Contact us by Whatsapp!</p>
-          <img className="imgAboutUs" src={scan} />
-        </div>
+
         <div>
           <img className="imgAboutUs" src={map} />
         </div>
