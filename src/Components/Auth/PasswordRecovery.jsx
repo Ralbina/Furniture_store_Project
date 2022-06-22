@@ -149,7 +149,6 @@ export default function PasswordRecovery() {
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
                 handleResetPassword(activate_code, password, password_confirm);
-                navigate("/");
               }}
             >
               Change password
