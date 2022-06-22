@@ -1,13 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import { getCountProductsFavorite } from "../../helpers/favoriteFunctions";
-
 export const favoriteContext = createContext();
-
 const INIT_STATE = {
   favorite: {},
   favoriteLength: getCountProductsFavorite(),
 };
-
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
     case "GET_FAVORITE":
@@ -18,10 +15,8 @@ const reducer = (state = INIT_STATE, action) => {
       return state;
   }
 };
-
 const FavoriteContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
-
   const addProductToFavorite = (productItem) => {
     let favorite = JSON.parse(localStorage.getItem("favorite"));
     if (!favorite) {
@@ -29,16 +24,13 @@ const FavoriteContextProvider = ({ children }) => {
         favoriteProducts: [],
       };
     }
-
     let newProduct = {
       item: productItem,
       count: 1,
     };
-
     let filterFavorite = favorite.favoriteProducts.filter((elem) => {
       return elem.item.id === productItem.id;
     });
-
     if (filterFavorite.length > 0) {
       favorite.favoriteProducts = favorite.favoriteProducts.filter((elem) => {
         return elem.item.id !== productItem.id;
@@ -46,15 +38,12 @@ const FavoriteContextProvider = ({ children }) => {
     } else {
       favorite.favoriteProducts.push(newProduct);
     }
-
     localStorage.setItem("favorite", JSON.stringify(favorite));
-
     dispatch({
       type: "CHANGE_FAVORITE_COUNT",
       payload: favorite.favoriteProducts.length,
     });
   };
-
   const getFavorite = () => {
     let favorite = JSON.parse(localStorage.getItem("favorite"));
     if (!favorite) {
@@ -62,13 +51,11 @@ const FavoriteContextProvider = ({ children }) => {
         favoriteProducts: [],
       };
     }
-
     dispatch({
       type: "GET_FAVORITE",
       payload: favorite,
     });
   };
-
   const deleteFavoriteProduct = (id) => {
     let favorite = JSON.parse(localStorage.getItem("favorite"));
     favorite.favoriteProducts = favorite.favoriteProducts.filter(
@@ -81,7 +68,6 @@ const FavoriteContextProvider = ({ children }) => {
       payload: favorite.favoriteProducts.length,
     });
   };
-
   function changeFavoriteCount(id, count) {
     let favorite = JSON.parse(localStorage.getItem("favorite"));
     favorite.favoriteProducts = favorite.favoriteProducts.map((elem) => {
@@ -93,7 +79,6 @@ const FavoriteContextProvider = ({ children }) => {
     localStorage.setItem("favorite", JSON.stringify(favorite));
     getFavorite();
   }
-
   return (
     <favoriteContext.Provider
       value={{
@@ -109,5 +94,4 @@ const FavoriteContextProvider = ({ children }) => {
     </favoriteContext.Provider>
   );
 };
-
 export default FavoriteContextProvider;

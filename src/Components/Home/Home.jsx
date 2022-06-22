@@ -45,7 +45,7 @@ export default function Home() {
       >
         <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
           <SwiperSlide>
-            <img src={carousel1} />
+            <img src={carousel5} />
           </SwiperSlide>
           <SwiperSlide>
             <img src={carousel2} />
@@ -57,7 +57,7 @@ export default function Home() {
             <img src={carousel4} />
           </SwiperSlide>
           <SwiperSlide>
-            <img src={carousel5} />
+            <img src={carousel1} />
           </SwiperSlide>
           <SwiperSlide>
             <img src={carousel6} />

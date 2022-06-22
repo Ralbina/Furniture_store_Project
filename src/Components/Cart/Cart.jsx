@@ -15,6 +15,7 @@ import "../Cart/Cart.css";
 import Input from "@mui/material/Input";
 import { NavLink } from "react-router-dom";
 import { cartContext } from "../Context/CartContext";
+import cartIsEmpty from "../../assets/image/cartIsEmpty.png";
 
 const Cart = () => {
   const { cart, getCart, deleteCartProduct, changeProductCount } =
@@ -25,7 +26,7 @@ const Cart = () => {
   }, []);
   return (
     <div className="cart">
-      {cart.products ? (
+      {Array.isArray(cart.products) && cart.products.length ? (
         <div>
           <TableContainer>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -48,12 +49,12 @@ const Cart = () => {
                       <CardMedia
                         className="cart-img"
                         component="img"
-                        height="194"
-                        image={elem.item.img1}
-                        alt={elem.item.title}
+                        height="180"
+                        image={elem.item.image}
+                        alt={elem.item.name}
                       />
                     </TableCell>
-                    <TableCell align="right">{elem.item.title}</TableCell>
+                    <TableCell align="right">{elem.item.name}</TableCell>
                     <TableCell align="right">{elem.item.price}</TableCell>
 
                     <TableCell align="right">
@@ -74,13 +75,15 @@ const Cart = () => {
                       />
                     </TableCell>
                     <TableCell align="right">{elem.subPrice}</TableCell>
-                    <Button
-                      className="btn"
-                      onClick={() => deleteCartProduct(elem.item.id)}
-                      variant="contained"
-                    >
-                      Удалить
-                    </Button>
+                    <div className="btnDeletCart">
+                      <Button
+                        className="btn"
+                        onClick={() => deleteCartProduct(elem.item.id)}
+                        variant="contained"
+                      >
+                        Удалить
+                      </Button>
+                    </div>
                   </TableRow>
                 ))}
               </TableBody>
@@ -88,7 +91,16 @@ const Cart = () => {
           </TableContainer>
         </div>
       ) : (
-        <h2>Loading...</h2>
+        <div className="cartEmpty">
+          <div className="btnCart">
+            <NavLink to="/list">
+              <button className="buttonWrap">Go To Shop</button>
+            </NavLink>
+          </div>
+          <div>
+            <img src={cartIsEmpty} />
+          </div>
+        </div>
       )}
       <div className="totalPrice">
         <h4>Общая сумма: {cart.totalPrice}</h4>

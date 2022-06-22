@@ -25,6 +25,7 @@ import { cartContext } from "../Context/CartContext";
 import { favoriteContext } from "../Context/FavoriteContext";
 import SearchIcon from "@mui/icons-material/Search";
 import LiveSearch from "../LiveSearch/LiveSearch";
+import "./ProductList.css";
 const ProductList = () => {
   const {
     products,
@@ -66,40 +67,44 @@ const ProductList = () => {
           {products.results ? (
             products.results.map((item) => {
               return (
-                <Card
-                  onClick={() => navigate(`/details/${item.id}`)}
-                  sx={{ maxWidth: 500 }}
-                >
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={item.image}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {item.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <Button
-                      className="btn"
-                      onClick={() => addProductToFavorite(item)}
-                    >
-                      <FavoriteIcon />
-                    </Button>
-                    <Button
-                      className="btn"
-                      onClick={() => addProductToCart(item)}
-                    >
-                      <ShoppingCartIcon />
-                    </Button>
-                  </CardActions>
-                </Card>
+                <div className="textCard">
+                  <Card
+                    sx={{ maxWidth: 320, maxHeight: 500 }}
+                    onClick={() => navigate(`/details/${item.id}`)}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="280"
+                        image={item.image}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {item.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {item.price}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button
+                        className="btn"
+                        onClick={() => addProductToFavorite(item)}
+                        color="inherit"
+                      >
+                        <FavoriteIcon />
+                      </Button>
+                      <Button
+                        className="btn"
+                        onClick={() => addProductToCart(item)}
+                        color="inherit"
+                      >
+                        <ShoppingCartIcon />
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </div>
               );
             })
           ) : (
