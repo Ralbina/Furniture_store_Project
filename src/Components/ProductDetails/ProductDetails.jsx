@@ -11,10 +11,14 @@ import { favoriteContext } from "../Context/FavoriteContext";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Button } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { useAuth } from "../Context/AuthContext";
 
 const ProductDetails = ({ item }) => {
   const { addProductToCart } = useContext(cartContext);
   const { addProductToFavorite } = useContext(favoriteContext);
+  const { user, logout } = useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -81,31 +85,35 @@ const ProductDetails = ({ item }) => {
         </div>
         <div data-aos="fade-up" className="topicDetailsButtons">
           <Button onClick={() => addProductToCart(productDetails)}>
-            <AddShoppingCartIcon />
+            <AddShoppingCartIcon sx={{ fontSize: 50, color: "#154444" }} />
           </Button>
           <Button
             onClick={() => addProductToFavorite(productDetails)}
             aria-label="add to favorites"
           >
-            <FavoriteIcon />
+            <FavoriteIcon sx={{ fontSize: 50, color: "#154444" }} />
           </Button>
-          <Button
-            onClick={() => navigate(`/edit/${id}`)}
-            className="btnCrud"
-            id="edit"
-          >
-            <img src={edit} alt="edit" />
-          </Button>
-          <Button
-            className="btnCrud"
-            id="del"
-            onClick={() => {
-              deleteProduct(id);
-              navigate("/list");
-            }}
-          >
-            <img src={trash} alt="trash" />
-          </Button>
+          {user === "admin@admin.com" ? (
+            <Button
+              onClick={() => navigate(`/edit/${id}`)}
+              className="btnCrud"
+              id="edit"
+            >
+              <EditIcon sx={{ fontSize: 50, color: "#154444" }} />
+            </Button>
+          ) : null}
+          {user === "admin@admin.com" ? (
+            <Button
+              className="btnCrud"
+              id="del"
+              onClick={() => {
+                deleteProduct(id);
+                navigate("/list");
+              }}
+            >
+              <DeleteIcon sx={{ fontSize: 50, color: "#154444" }} />
+            </Button>
+          ) : null}
         </div>
       </div>
     </>

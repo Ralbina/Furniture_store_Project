@@ -17,30 +17,28 @@ import { ExpandMore } from "@mui/icons-material";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { cartContext } from "../Context/CartContext";
+import hert from "../../assets/image/favotireHert.gif";
 import "./Favorite.css";
+import { NavLink } from "react-router-dom";
 const Favorite = () => {
   const { favorite, getFavorite, deleteFavoriteProduct } =
     useContext(favoriteContext);
   const { addProductToCart } = useContext(cartContext);
+  console.log("rendered");
+
+  console.log(favorite, "favorite");
   useEffect(() => {
+    console.log("useffect");
     getFavorite();
   }, []);
+
   return (
     <div className="favorite">
-      {favorite.favoriteProducts ? (
+      {Array.isArray(favorite.favoriteProducts) &&
+      favorite.favoriteProducts.length ? (
         <div className="favorite1">
           {favorite.favoriteProducts.map((elem) => (
             <Card key={elem.item.id} sx={{ maxWidth: 345 }}>
-              <CardHeader
-                avatar={<Avatar aria-label="recipe">R</Avatar>}
-                action={
-                  <IconButton aria-label="settings">
-                    <MoreVertIcon />
-                  </IconButton>
-                }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-              />
               <CardMedia
                 component="img"
                 height="194"
@@ -74,7 +72,19 @@ const Favorite = () => {
           ))}
         </div>
       ) : (
-        <h2>Loading...</h2>
+        <div className="hertFavorite">
+          <div>
+            <p className="textFavorite">
+              Click on the heart to add the product to your favorites
+            </p>
+            <NavLink to="/list">
+              <button className="buttonWrap">Go To Shop</button>
+            </NavLink>
+          </div>
+          <div>
+            <img src={hert} />
+          </div>
+        </div>
       )}
     </div>
   );
