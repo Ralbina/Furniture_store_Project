@@ -49,11 +49,7 @@ const Cart = () => {
                       <CardMedia
                         className="cart-img"
                         component="img"
-<<<<<<< HEAD
-                        height="194"
-=======
                         height="180"
->>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
                         image={elem.item.image}
                         alt={elem.item.name}
                       />
