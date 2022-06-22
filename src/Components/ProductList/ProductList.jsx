@@ -55,28 +55,6 @@ const ProductList = () => {
   console.log(products.results, "results in list");
   return (
     <>
-      {/* <Grid item md={2}>
-        <Paper
-          elevation={5}
-          sx={{ p: 2, bgcolor: "#f5f5f5", marginRight: "30px" }}
-        >
-          <TextField
-            fullWidth
-            id="input-with-icon-textfield"
-            label="Search..."
-            value={search}
-            onChange={(e) => searchFilter(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-        </Paper>
-      </Grid> */}
       <Grid item>
         <Box
           sx={{
@@ -90,7 +68,10 @@ const ProductList = () => {
             products.results.map((item) => {
               return (
                 <div className="textCard">
-                  <Card sx={{ maxWidth: 320, maxHeight: 500 }}>
+                  <Card
+                    sx={{ maxWidth: 320, maxHeight: 500 }}
+                    onClick={() => navigate(`/details/${item.id}`)}
+                  >
                     <CardActionArea>
                       <CardMedia
                         component="img"
@@ -120,13 +101,6 @@ const ProductList = () => {
                         color="inherit"
                       >
                         <ShoppingCartIcon />
-                      </Button>
-                      <Button
-                        onClick={() => navigate(`/details/${item.id}`)}
-                        size="small"
-                        color="inherit"
-                      >
-                        Подробнее
                       </Button>
                     </CardActions>
                   </Card>

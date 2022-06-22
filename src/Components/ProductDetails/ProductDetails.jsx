@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import { NavLink, useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import { useState } from "react";
-import trash from "../../assets/image/trash.svg";
-import edit from "../../assets/image/edit.svg";
 import "./ProductDetails.css";
 import { cartContext } from "../Context/CartContext";
 import { favoriteContext } from "../Context/FavoriteContext";
