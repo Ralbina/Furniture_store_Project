@@ -128,78 +128,97 @@ const ProductList = () => {
   // console.log(products.results, "results in list");
   return (
     <>
-      <div>{/* <SideBarSearch /> */}</div>
-      <Grid item md={2}>
-        <TextField type="text" onChange={(e) => searchFilter(e.target.value)} />
-        <SideBarFilter type={type} setType={setType} />
-      </Grid>
-      <Grid item>
-        <Box
-          sx={{
-            display: "flex",
-            flexWrap: "wrap",
-            my: "35px",
-            justifyContent: "space-evenly",
-          }}
-        >
-          {products.results ? (
-            products.results.map((item) => {
-              return (
-                <div className="textCard">
-                  <Card
-                    sx={{ maxWidth: 320, maxHeight: 500 }}
-                    onClick={() => navigate(`/details/${item.id}`)}
-                  >
-                    <CardActionArea>
-                      <CardMedia
-                        component="img"
-                        height="280"
-                        image={item.image}
-                      />
-                      <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                          {item.name}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                          {item.price}
-                        </Typography>
-                      </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                      <Button
-                        className="btn"
-                        onClick={() => addProductToFavorite(item)}
-                        color="inherit"
-                      >
-                        <FavoriteIcon />
-                      </Button>
-                      <Button
-                        className="btn"
-                        onClick={() => addProductToCart(item)}
-                        color="inherit"
-                      >
-                        <ShoppingCartIcon />
-                      </Button>
-                    </CardActions>
-                  </Card>
-                </div>
-              );
-            })
-          ) : (
-            <h2>Loading...</h2>
-          )}
-        </Box>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <Box display="flex" justifyContent="center" my={3}>
-            <Pagination count={count} page={page} onChange={handleChange} />
-          </Box>
-        </Box>
-      </Grid>
+      <div className="contList">
+        <div className="serchList">
+          <Grid>
+            <TextField
+              type="text"
+              placeholder="поиск..."
+              onChange={(e) => searchFilter(e.target.value)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <SideBarFilter type={type} setType={setType} />
+          </Grid>
+        </div>
+        <div className="filterList">
+          <Grid item>
+            <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                my: "35px",
+                justifyContent: "space-evenly",
+              }}
+            >
+              {products.results ? (
+                products.results.map((item) => {
+                  return (
+                    <div className="textCard">
+                      <Card sx={{ maxWidth: 320, maxHeight: 500 }}>
+                        <CardActionArea
+                          onClick={() => navigate(`/details/${item.id}`)}
+                        >
+                          <CardMedia
+                            component="img"
+                            height="280"
+                            image={item.image}
+                          />
+                          <CardContent>
+                            <Typography
+                              gutterBottom
+                              variant="h5"
+                              component="div"
+                            >
+                              {item.name}
+                            </Typography>
+                            <Typography variant="body2" color="text.secondary">
+                              {item.price}
+                            </Typography>
+                          </CardContent>
+                        </CardActionArea>
+                        <CardActions>
+                          <Button
+                            className="btn"
+                            onClick={() => addProductToFavorite(item)}
+                            color="inherit"
+                          >
+                            <FavoriteIcon />
+                          </Button>
+                          <Button
+                            className="btn"
+                            onClick={() => addProductToCart(item)}
+                            color="inherit"
+                          >
+                            <ShoppingCartIcon />
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </div>
+                  );
+                })
+              ) : (
+                <h2>Loading...</h2>
+              )}
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <Box display="flex" justifyContent="center" my={3}>
+                <Pagination count={count} page={page} onChange={handleChange} />
+              </Box>
+            </Box>
+          </Grid>
+        </div>
+      </div>
     </>
   );
 };

@@ -43,26 +43,31 @@ export default function Home() {
           height: "80%",
         }}
       >
-        <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
-          <SwiperSlide>
-            <img src={carousel5} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={carousel2} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={carousel3} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={carousel4} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={carousel1} />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img src={carousel6} />
-          </SwiperSlide>
-        </Swiper>
+        <div className="swipe">
+          <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
+            <SwiperSlide>
+              <img src={carousel5} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={carousel2} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={carousel3} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={carousel4} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={carousel1} />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={carousel6} />
+            </SwiperSlide>
+          </Swiper>
+          <p className="text1">
+            Modern Furniture. <p>Inspired by the roots of Minimalist design</p>
+          </p>
+        </div>
       </div>
       {/* swiper end*/}
       <div className="container1">

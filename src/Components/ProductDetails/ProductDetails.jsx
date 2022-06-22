@@ -11,7 +11,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Box, Button, IconButton, TextField, Typography } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useAuth } from "../../Components/Context/AuthContext";
-
+import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -87,12 +87,13 @@ const ProductDetails = ({ item }) => {
             onClick={() => addProductToFavorite(productDetails)}
             aria-label="add to favorites"
           >
-            <FavoriteIcon />
+            <FavoriteIcon sx={{ fontSize: 50, color: "#154444" }} />
           </Button>
 
           <IconButton onClick={() => like(id)}>
-            <FavoriteBorderIcon
+            <ThumbUpIcon
               color={productDetails.liked_by_user ? "error" : "success"}
+              sx={{ fontSize: 50 }}
             />
             {/* <FavoriteBorderIcon /> */}
 
