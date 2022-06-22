@@ -104,7 +104,6 @@ const ProductContextProvider = ({ children }) => {
     //фильтрация
     if (value === "all") {
       getProducts();
-<<<<<<< HEAD
     } else if (
       value === "wardrobes" ||
       value === "bedroom-sets" ||
@@ -119,11 +118,6 @@ const ProductContextProvider = ({ children }) => {
         `${API}/?type=${value}&name=&description=&price_from=&price_to=`
       );
       console.log(value);
-=======
-    } else {
-      const { data } = await axios(`${API}filter/?${query}=${value}`);
->>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
-      console.log(data);
       dispatch({
         type: ACTIONS.GET_PRODUCTS,
         payload: data,
@@ -138,10 +132,6 @@ const ProductContextProvider = ({ children }) => {
       type: ACTIONS.GET_PRODUCTS,
       payload: data,
     });
-<<<<<<< HEAD
-=======
-    // console.log(data);
->>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
   };
 
   const like = async (id) => {

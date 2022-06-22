@@ -72,7 +72,6 @@ const AuthContextProvider = ({ children }) => {
       navigate("/");
     } catch (error) {
       setError("error occured");
-      // alert("hi");
       alertToastify("This user doesn't exist, please register!");
     }
   }
@@ -129,7 +128,7 @@ const AuthContextProvider = ({ children }) => {
       );
       console.log(res);
       //   alertToastify("All good");
-      navigate("/login");
+      navigate("/resetPassword");
     } catch (e) {
       alertToastify(e);
       console.log(e);
@@ -159,7 +158,7 @@ const AuthContextProvider = ({ children }) => {
       console.log(activate_code, password, password_confirm);
 
       setUser(activate_code, password, password_confirm);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       setError("error occured");
     }

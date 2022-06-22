@@ -87,8 +87,6 @@ const ProductList = () => {
   const navigate = useNavigate();
   // console.log(products.results);
   const [searchParams, setSearchParams] = useSearchParams();
-
-<<<<<<< HEAD
   const [type, setType] = useState(searchParams.get("type") || "all");
   const paramsWithType = () => {
     fetchByParams();
@@ -112,10 +110,6 @@ const ProductList = () => {
     } else {
       setSearchParams(paramsNoType());
     }
-=======
-  useEffect(() => {
-    getProducts();
->>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
   }, []);
   useEffect(() => {
     fetchByParams();
@@ -134,16 +128,11 @@ const ProductList = () => {
   // console.log(products.results, "results in list");
   return (
     <>
-<<<<<<< HEAD
-      <div>
-        <SideBarSearch />
-      </div>
+      <div>{/* <SideBarSearch /> */}</div>
       <Grid item md={2}>
         <TextField type="text" onChange={(e) => searchFilter(e.target.value)} />
         <SideBarFilter type={type} setType={setType} />
       </Grid>
-=======
->>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
       <Grid item>
         <Box
           sx={{
