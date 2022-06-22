@@ -17,6 +17,7 @@ import LightFurniture from "./Components/LightFurniture/LightFurniture";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import ProductList from "./Components/ProductList/ProductList";
 import Payment from "./Components/Payment/Payment";
+import ConfirmPayment from "./Components/Payment/ConfirmPayment";
 
 const MainRoutes = () => {
   return (
@@ -38,6 +39,7 @@ const MainRoutes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/favorite" element={<Favorite />} />
       <Route path="/payment" element={<Payment />} />
+      <Route path="/confirm" element={<ConfirmPayment />} />
     </Routes>
   );
 };

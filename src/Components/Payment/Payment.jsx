@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import { Navigate, NavLink } from "react-router-dom";
 import "../Payment/Payment.css";
 
 const CreditCard = () => {
@@ -36,7 +37,6 @@ const CreditCard = () => {
         <form className="formInput">
           <div className="row">
             <div className="col-sm-11">
-              <label for="name">Номер карты</label>
               <input
                 type="tel"
                 className="form-control"
@@ -44,6 +44,7 @@ const CreditCard = () => {
                 name="number"
                 maxlength="16"
                 pattern="[0-9]+"
+                placeholder="Номер карты"
                 onChange={(e) => {
                   SetNumber(e.target.value);
                 }}
@@ -54,12 +55,12 @@ const CreditCard = () => {
           <br />
           <div className="row">
             <div className="col-sm-11">
-              <label for="name">ФИО</label>
               <input
                 type="text"
                 className="form-control"
                 value={name}
                 name="name"
+                placeholder="Ф.И.О"
                 onChange={(e) => {
                   SetName(e.target.value);
                 }}
@@ -141,11 +142,13 @@ const CreditCard = () => {
             </div>
           </div>
           <br />
-          <input
-            type="submit"
-            className="btn btn-danger form-control"
-            value="ПОДТВЕРДИТЬ"
-          />
+          <NavLink to="/confirm">
+            <input
+              type="submit"
+              className="btn btn-danger form-control"
+              value="ПОДТВЕРДИТЬ"
+            />
+          </NavLink>
         </form>
       </div>
     </>

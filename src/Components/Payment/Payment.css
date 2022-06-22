@@ -9,7 +9,7 @@
   background-image: url("/src/assets/image/creditCard.jpg");
   background-size: cover;
   color: black !important;
-  width: 1440px;
+  width: 100%;
   height: 700px;
   background-size: cover;
   background-repeat: no-repeat;
@@ -92,5 +92,5 @@ form {
   /* display: flex; */
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 605px;
+  margin-left: 700px;
 }
