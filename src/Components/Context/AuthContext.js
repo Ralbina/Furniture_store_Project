@@ -17,7 +17,6 @@ const AuthContextProvider = ({ children }) => {
 
   const alertToastify = (e) => {
     toast.error(`${e}`, {
-      position: "top-center",
       autoClose: 5000,
       hideProgressBar: false,
       closeOnClick: true,

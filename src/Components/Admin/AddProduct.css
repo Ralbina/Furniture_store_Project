@@ -1,7 +1,7 @@
 .aadBox {
   background-image: url(../../assets/image/lamp.jpg);
-  width: 1440px;
-  height: 700px;
+  width: 100%;
+  height: 900px;
   background-size: cover;
   background-repeat: no-repeat;
 }

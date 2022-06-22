@@ -1,9 +1,16 @@
-.btn {
-  color: #cb3589;
-}
 .totalPrice {
   display: flex;
   justify-content: space-around;
   margin-bottom: 10px;
   padding-top: 20px;
+}
+.btnCart {
+  padding-top: 200px;
+}
+.cartEmpty {
+  display: flex;
+  justify-content: space-around;
+}
+.btnDeletCart {
+  padding-top: 75px;
 }

@@ -16,13 +16,19 @@ import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
 import logo from "../../assets/image/logo.png";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { favoriteContext } from "../Context/FavoriteContext";
 import { cartContext } from "../Context/CartContext";
 import { productContext } from "../Context/ProductContext";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import CottageIcon from "@mui/icons-material/Cottage";
+import LightIcon from "@mui/icons-material/Light";
+import EventSeatIcon from "@mui/icons-material/EventSeat";
+import InfoIcon from "@mui/icons-material/Info";
+import "./Navbar.css";
 
 // const Search = styled("div")(({ theme }) => ({
 //   position: "relative",
@@ -118,12 +124,12 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      {!user ? (
-        <>
-          <MenuItem onClick={handleMenuClose}>LOGIN</MenuItem>
-        </>
-      ) : (
-        <MenuItem onClick={logout}>Logout</MenuItem>
+      <MenuItem onClick={handleMenuClose}>{user}</MenuItem>
+      <NavLink to="/Login">
+        <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
+      </NavLink>
+      {!user === undefined ? null : (
+        <MenuItem onClick={logout}>Log Out</MenuItem>
       )}
     </Menu>
   );
@@ -148,13 +154,83 @@ export default function PrimarySearchAppBar() {
       <MenuItem>
         <IconButton
           size="large"
-          color="inherit"
+          color="success"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/");
+          }}
+        >
+          <CottageIcon />
+          <Badge color="secondary"></Badge>
+        </IconButton>
+        <p>Home</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          color="success"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/list");
+          }}
+        >
+          <ShoppingCartCheckoutIcon />
+          <Badge color="secondary"></Badge>
+        </IconButton>
+        <p>Shop</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          color="success"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/light");
+          }}
+        >
+          <LightIcon />
+          <Badge color="success"></Badge>
+        </IconButton>
+        <p>Modern Lighting</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          color="success"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/furniture");
+          }}
+        >
+          <EventSeatIcon />
+          <Badge color="secondary"></Badge>
+        </IconButton>
+        <p>Modern Furniture</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          color="success"
+          aria-label="add to favorites"
+          onClick={() => {
+            navigate("/aboutus");
+          }}
+        >
+          <InfoIcon />
+          <Badge color="secondary"></Badge>
+        </IconButton>
+        <p>About Us</p>
+      </MenuItem>
+      <MenuItem>
+        <IconButton
+          size="large"
+          color="success"
           aria-label="add to favorites"
           onClick={() => {
             navigate("/favorite");
           }}
         >
-          <Badge badgeContent={favoriteLenght} color="secondary">
+          <Badge badgeContent={favoriteLenght} color="success">
             <FavoriteIcon />
           </Badge>
         </IconButton>
@@ -164,11 +240,11 @@ export default function PrimarySearchAppBar() {
         <IconButton
           size="large"
           aria-label="show 17 new notifications"
-          color="inherit"
+          color="success"
         >
           <Badge
             badgeContent={cartLenght}
-            color="error"
+            color="success"
             onClick={() => {
               navigate("/cart");
             }}
@@ -184,7 +260,7 @@ export default function PrimarySearchAppBar() {
           aria-label="account of current user"
           aria-controls="primary-search-account-menu"
           aria-haspopup="true"
-          color="inherit"
+          color="success"
         >
           <AccountCircle />
         </IconButton>
@@ -195,7 +271,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="fixed" sx={{ color: "white", bgcolor: "#154444" }}>
+      <AppBar position="static" sx={{ color: "white", bgcolor: "#154444" }}>
         <Toolbar>
           {/* <Search onClick={() => searchFilter}>
             <SearchIconWrapper>
@@ -208,6 +284,26 @@ export default function PrimarySearchAppBar() {
           </Search> */}
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
+            <NavLink className="nav-link" to="/">
+              <p variant="contained">Home</p>
+            </NavLink>
+            <NavLink className="nav-link" to="/list">
+              <p variant="contained">Shop</p>
+            </NavLink>
+            <NavLink className="nav-link" to="/light">
+              <p variant="contained">Modern Lighting</p>
+            </NavLink>
+            <NavLink className="nav-link" to="/furniture">
+              <p variant="contained">Modern Furniture</p>
+            </NavLink>
+            {user === "admin@admin.com" ? (
+              <NavLink className="nav-link" to="/add">
+                <p variant="contained">Add Produts</p>
+              </NavLink>
+            ) : null}
+            <NavLink className="nav-link" to="/aboutus">
+              <p variant="contained">About Us</p>
+            </NavLink>
             <IconButton
               size="large"
               color="inherit"
@@ -216,7 +312,7 @@ export default function PrimarySearchAppBar() {
                 navigate("/favorite");
               }}
             >
-              <Badge badgeContent={favoriteLenght} color="secondary">
+              <Badge badgeContent={favoriteLenght} color="success">
                 <FavoriteIcon />
               </Badge>
             </IconButton>
@@ -229,7 +325,7 @@ export default function PrimarySearchAppBar() {
                 navigate("/cart");
               }}
             >
-              <Badge badgeContent={cartLenght} color="secondary">
+              <Badge badgeContent={cartLenght} color="success">
                 <ShoppingCartIcon />
               </Badge>
             </IconButton>

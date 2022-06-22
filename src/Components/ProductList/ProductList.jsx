@@ -28,6 +28,7 @@ import SideBarSearch from "../sideBar/SideBarSearch";
 import SideBarFilter from "../sideBar/SideBarFilter";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
+import "./ProductList.css";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -87,6 +88,7 @@ const ProductList = () => {
   // console.log(products.results);
   const [searchParams, setSearchParams] = useSearchParams();
 
+<<<<<<< HEAD
   const [type, setType] = useState(searchParams.get("type") || "all");
   const paramsWithType = () => {
     fetchByParams();
@@ -110,6 +112,10 @@ const ProductList = () => {
     } else {
       setSearchParams(paramsNoType());
     }
+=======
+  useEffect(() => {
+    getProducts();
+>>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
   }, []);
   useEffect(() => {
     fetchByParams();
@@ -128,6 +134,7 @@ const ProductList = () => {
   // console.log(products.results, "results in list");
   return (
     <>
+<<<<<<< HEAD
       <div>
         <SideBarSearch />
       </div>
@@ -135,6 +142,8 @@ const ProductList = () => {
         <TextField type="text" onChange={(e) => searchFilter(e.target.value)} />
         <SideBarFilter type={type} setType={setType} />
       </Grid>
+=======
+>>>>>>> 546ae2527c954ab56f8b29b81b1c8d40a36250c7
       <Grid item>
         <Box
           sx={{
@@ -147,44 +156,44 @@ const ProductList = () => {
           {products.results ? (
             products.results.map((item) => {
               return (
-                <Card sx={{ maxWidth: 500 }}>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      height="300"
-                      image={item.image}
-                    />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
-                        {item.name}
-                      </Typography>
-                      <Typography variant="body2" color="text.secondary">
-                        {item.price}
-                      </Typography>
-                    </CardContent>
-                  </CardActionArea>
-                  <CardActions>
-                    <Button
-                      className="btn"
-                      onClick={() => addProductToFavorite(item)}
-                    >
-                      <FavoriteIcon />
-                    </Button>
-                    <Button
-                      className="btn"
-                      onClick={() => addProductToCart(item)}
-                    >
-                      <ShoppingCartIcon />
-                    </Button>
-                    <Button
-                      onClick={() => navigate(`/details/${item.id}`)}
-                      size="small"
-                      color="primary"
-                    >
-                      Подробнее
-                    </Button>
-                  </CardActions>
-                </Card>
+                <div className="textCard">
+                  <Card
+                    sx={{ maxWidth: 320, maxHeight: 500 }}
+                    onClick={() => navigate(`/details/${item.id}`)}
+                  >
+                    <CardActionArea>
+                      <CardMedia
+                        component="img"
+                        height="280"
+                        image={item.image}
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="div">
+                          {item.name}
+                        </Typography>
+                        <Typography variant="body2" color="text.secondary">
+                          {item.price}
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                      <Button
+                        className="btn"
+                        onClick={() => addProductToFavorite(item)}
+                        color="inherit"
+                      >
+                        <FavoriteIcon />
+                      </Button>
+                      <Button
+                        className="btn"
+                        onClick={() => addProductToCart(item)}
+                        color="inherit"
+                      >
+                        <ShoppingCartIcon />
+                      </Button>
+                    </CardActions>
+                  </Card>
+                </div>
               );
             })
           ) : (
@@ -197,7 +206,7 @@ const ProductList = () => {
             justifyContent: "center",
           }}
         >
-          <Box my={3}>
+          <Box display="flex" justifyContent="center" my={3}>
             <Pagination count={count} page={page} onChange={handleChange} />
           </Box>
         </Box>
