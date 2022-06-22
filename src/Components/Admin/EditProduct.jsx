@@ -4,24 +4,19 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import "../Admin/EditProduct.css";
-
+import Select from "react-select";
 const EditProduct = () => {
   const { getProductDetails, productDetails, saveEditedProduct } =
     useProducts();
-
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [product, setProduct] = useState(productDetails);
-
   useEffect(() => {
     setProduct(productDetails);
   }, [productDetails]);
-
   useEffect(() => {
     getProductDetails(id);
   }, []);
-
   const handleInp = (e) => {
     let obj = {
       ...product,
@@ -29,27 +24,42 @@ const EditProduct = () => {
     };
     setProduct(obj);
   };
-
   const handleInpFile = (e) => {
     let file = e.target.files[0];
     setProduct({ ...product, image: file });
   };
-
+  const options = [
+    { value: "wardrobes", label: "ШКАФ" },
+    { value: "bedroom-sets", label: "СПАЛЬНИ" },
+    { value: "hallways", label: "ПРИХОЖИЕ" },
+    { value: "kitchens", label: "КУХНИ" },
+    { value: "tv-stand", label: "TV ТУМБЫ" },
+    { value: "dressers", label: "КОМОДЫ" },
+    { value: "living-room-sets", label: "ГОСТИНЫЕ" },
+    { value: "children-sets", label: "ДЕТСКИЕ & ОФИС" },
+    { value: "cushioned-furniture", label: "МЯГКАЯ МЕБЕЛЬ" },
+  ];
+  const [selectedOption, setSelectedOption] = useState(null);
   return (
     <div className="editPage">
       <Box
         sx={{
           width: "40vw",
           p: "6vh 1vw",
-          ml: "34vw",
+          ml: "3vw",
           my: "8vh",
-          mt: "0vh",
+          mt: "vh",
           display: "flex",
           flexDirection: "column",
         }}
       >
         <TextField
-          sx={{ marginBottom: "10px", borderColor: "black" }}
+          sx={{
+            marginBottom: "20px",
+            marginTop: "20px",
+            borderColor: "black",
+            backgroundColor: "whitesmoke",
+          }}
           fullWidth
           id="outlined-basic"
           label="Name"
@@ -59,25 +69,9 @@ const EditProduct = () => {
           value={product.name || ""}
           onChange={handleInp}
         />
-
         <TextField
           sx={{
-            marginBottom: "10px",
-            borderColor: "black",
-            backgroundColor: "whitesmoke",
-          }}
-          fullWidth
-          id="outlined-basic"
-          label="Speciality"
-          variant="outlined"
-          name="speciality"
-          size="small"
-          value={product.type || ""}
-          onChange={handleInp}
-        />
-        <TextField
-          sx={{
-            marginBottom: "10px",
+            marginBottom: "20px",
             borderColor: "black",
             backgroundColor: "whitesmoke",
           }}
@@ -92,7 +86,7 @@ const EditProduct = () => {
         />
         <TextField
           sx={{
-            marginBottom: "10px",
+            marginBottom: "20px",
             borderColor: "black",
             backgroundColor: "whitesmoke",
           }}
@@ -107,7 +101,7 @@ const EditProduct = () => {
         />
         <TextField
           sx={{
-            marginBottom: "10px",
+            marginBottom: "20px",
             borderColor: "black",
             backgroundColor: "whitesmoke",
           }}
@@ -120,11 +114,16 @@ const EditProduct = () => {
           value={product.description || ""}
           onChange={handleInp}
         />
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
+          label="Тип товара"
+        />
         <Input type="file" onChange={handleInpFile} />
-
         <Button
           sx={{
-            marginBottom: "10px",
+            marginTop: "20px",
             borderColor: "black",
             color: "black",
             backgroundColor: "whitesmoke",
@@ -143,5 +142,4 @@ const EditProduct = () => {
     </div>
   );
 };
-
 export default EditProduct;

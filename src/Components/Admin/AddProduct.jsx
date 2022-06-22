@@ -91,13 +91,6 @@ const AddProduct = () => {
           onChange={handleInp}
         />
 
-        <Select
-          defaultValue={selectedOption}
-          onChange={setSelectedOption}
-          options={options}
-          label="Тип товара"
-        />
-
         <TextField
           className="inp3"
           sx={{
@@ -139,6 +132,12 @@ const AddProduct = () => {
           name="description"
           size="small"
           onChange={handleInp}
+        />
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
+          label="Тип товара"
         />
         <Input className="inpPhoto" type="file" onChange={handleInpFile} />
         <Button

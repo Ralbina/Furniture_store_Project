@@ -17,7 +17,7 @@ const AboutUs = () => {
     <>
       <div>
         <div className="containerAboutUs1">
-          <p className="bigTextModern">MEET OUR FURNITURE DESIGNERS</p>
+          <p className="bigTextModern1">MEET OUR FURNITURE DESIGNERS</p>
           <p>
             We cooperate with many designers from Denmark and other countries.
             As you might expect, they are all awards of the highest
@@ -30,7 +30,7 @@ const AboutUs = () => {
         </div>
         <div className="containerAboutUs2">
           <div>
-            <p className="bigTextModern">Usenkanova Binazir</p>
+            <p className="bigTextModern1">Usenkanova Binazir</p>
             <p>
               Morten Georgsen has a special talent for combining textures and
               colors. The result is incredibly beautiful things.
@@ -45,7 +45,7 @@ const AboutUs = () => {
             <img className="imgAboutUs" src={aboutus2} />
           </div>
           <div>
-            <p className="bigTextModern">Saidalimov Muhamadamin</p>
+            <p className="bigTextModern1">Saidalimov Muhamadamin</p>
             <p>
               Morten Georgsen has a special talent for combining textures and
               colors. The result is incredibly beautiful things.
@@ -54,7 +54,7 @@ const AboutUs = () => {
         </div>
         <div className="containerAboutUs4">
           <div>
-            <p className="bigTextModern">Ysakova Ilika</p>
+            <p className="bigTextModern1">Ysakova Ilika</p>
             <p>
               Morten Georgsen has a special talent for combining textures and
               colors. The result is incredibly beautiful things.
@@ -69,7 +69,7 @@ const AboutUs = () => {
             <img className="imgAboutUs" src={aboutus1} />
           </div>
           <div>
-            <p className="bigTextModern">Almaz</p>
+            <p className="bigTextModern1">Almaz</p>
             <p>
               Morten Georgsen has a special talent for combining textures and
               colors. The result is incredibly beautiful things.
@@ -78,7 +78,7 @@ const AboutUs = () => {
         </div>
         <div className="containerAboutUs6">
           <div>
-            <p className="bigTextModern">Umida</p>
+            <p className="bigTextModern1">Umida</p>
             <p>
               Morten Georgsen has a special talent for combining textures and
               colors. The result is incredibly beautiful things.
@@ -93,7 +93,7 @@ const AboutUs = () => {
             <img className="imgAboutUs" src={aboutus1} />
           </div>
           <div>
-            <p className="bigTextModern">Rahmanova Albina</p>
+            <p className="bigTextModern1">Rahmanova Albina</p>
             <p>
               Morten Georgsen has a special talent for combining textures and
               colors. The result is incredibly beautiful things.

@@ -1,6 +1,6 @@
 .favorite1 {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
 }
 .btn {
@@ -9,4 +9,14 @@
 .favorite {
   padding-top: 30px;
   padding-bottom: 30px;
+}
+.textFavorite {
+  color: darkslategrey;
+  font-size: 30px;
+  padding-top: 150px;
+  padding-left: 80px;
+}
+.hertFavorite {
+  display: flex;
+  text-align: center;
 }

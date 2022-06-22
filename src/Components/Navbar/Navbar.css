@@ -2,3 +2,10 @@
   width: 70%;
   height: 100%;
 }
+.nav-link {
+  color: white;
+  text-decoration: none;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 15px;
+}
