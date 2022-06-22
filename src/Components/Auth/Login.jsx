@@ -55,9 +55,7 @@ export default function Login() {
 
   function handleLogin(email, password) {
     login(email, password)
-      .then(() => {
-        // navigate("/");
-      })
+      .then(() => {})
       .catch((error) => {
         alert(error.response?.data?.detail);
         console.log(error);

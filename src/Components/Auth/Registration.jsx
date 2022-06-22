@@ -175,7 +175,7 @@ export default function Registration() {
                 // handleClick();
 
                 handleRegister(username, email, password, password_confirm);
-                // navigate("/done");
+                navigate("/done");
               }}
             >
               Register
