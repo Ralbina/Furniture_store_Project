@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import "../Admin/EditProduct.css";
 import Select from "react-select";
+
 const EditProduct = () => {
   const { getProductDetails, productDetails, saveEditedProduct } =
     useProducts();
@@ -39,7 +40,9 @@ const EditProduct = () => {
     { value: "children-sets", label: "ДЕТСКИЕ & ОФИС" },
     { value: "cushioned-furniture", label: "МЯГКАЯ МЕБЕЛЬ" },
   ];
+
   const [selectedOption, setSelectedOption] = useState(null);
+
   return (
     <div className="editPage">
       <Box

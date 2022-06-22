@@ -1,0 +1,96 @@
+.container-payment {
+  padding-top: 150px;
+  padding-bottom: 40px;
+  font-family: "Gilroy";
+  font-style: normal;
+  font-weight: 400;
+  /* font-size: 21px; */
+  line-height: 140%;
+  background-image: url("/src/assets/image/creditCard.jpg");
+  background-size: cover;
+  color: black !important;
+  width: 1440px;
+  height: 700px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  align-items: center;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: left;
+}
+form {
+  margin: 30px auto 0;
+  max-width: 400px;
+}
+.front {
+  position: relative;
+  transform: rotateY(0deg);
+  background-color: red;
+}
+.back {
+  position: relative;
+  transform: rotateY(180deg);
+  background-color: yellow;
+}
+.rccs__card {
+  height: 182.873px;
+  margin-top: 10;
+  margin-bottom: 10;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: all 0.4s linear;
+  transition: all 0.4s linear;
+  width: 290px;
+  /* background-image: url("/src/assets/image/creditCard2.jpg"); */
+
+  /* background: linear-gradient(
+       25deg
+    , #986, #234); */
+}
+
+.front1 {
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: red;
+}
+
+.back1 {
+  transform: rotateY(360deg);
+  margin-bottom: 30px !important;
+  background-color: yellow;
+}
+.App-cards-list {
+  display: flex;
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.App-cards-list > * {
+  transform: scale(0.8);
+  margin-bottom: 30px !important;
+}
+
+.back3 {
+  display: flex;
+  position: relative;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-image: url("/src/assets/image/creditImg2.jpg");
+}
+
+.rccs__card--unknown > div {
+  background-image: url("/src/assets/image/creditImg2.jpg");
+  color: black !important;
+}
+.formInput {
+  /* display: flex; */
+  flex-direction: column;
+  justify-content: flex-start;
+  margin-left: 605px;
+}

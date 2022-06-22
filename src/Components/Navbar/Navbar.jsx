@@ -120,10 +120,11 @@ export default function PrimarySearchAppBar() {
       onClose={handleMenuClose}
     >
       <MenuItem onClick={handleMenuClose}>{user}</MenuItem>
-      <NavLink to="/Login">
-        <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
-      </NavLink>
-      {!user === undefined ? null : (
+      {!user ? (
+        <>
+          <MenuItem onClick={handleMenuClose}>Log In</MenuItem>
+        </>
+      ) : (
         <MenuItem onClick={logout}>Log Out</MenuItem>
       )}
     </Menu>

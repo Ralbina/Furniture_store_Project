@@ -117,7 +117,7 @@ const ProductList = () => {
             justifyContent: "center",
           }}
         >
-          <Box my={3}>
+          <Box display="flex" justifyContent="center" my={3}>
             <Pagination count={count} page={page} onChange={handleChange} />
           </Box>
         </Box>

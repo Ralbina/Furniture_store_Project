@@ -32,7 +32,7 @@ const ProductContextProvider = ({ children }) => {
   const [page, setPage] = useState(1);
   const [state, dispatch] = useReducer(reducer, INIT_STATE);
 
-  const [count, setCount] = useState(8);
+  const [count, setCount] = useState(1);
 
   const getProducts = async () => {
     const { data } = await axios(`${API}/?page=${page}`);
@@ -44,7 +44,11 @@ const ProductContextProvider = ({ children }) => {
   };
   // console.log(getProducts());
   const getProductDetails = async (id) => {
-    const { data } = await axios(`${API}/${id}/`);
+    let token = JSON.parse(localStorage.getItem("token"));
+    const Authorization = `Bearer ${token.access}`;
+    const { data } = await axios(`${API}/${id}/`, {
+      headers: { Authorization },
+    });
     console.log(data);
     dispatch({
       type: ACTIONS.GET_PRODUCT_DETAILS,
@@ -101,6 +105,7 @@ const ProductContextProvider = ({ children }) => {
       getProducts();
     } else {
       const { data } = await axios(`${API}filter/?${query}=${value}`);
+      console.log(data);
       dispatch({
         type: ACTIONS.GET_PRODUCTS,
         payload: data,
@@ -115,54 +120,24 @@ const ProductContextProvider = ({ children }) => {
       type: ACTIONS.GET_PRODUCTS,
       payload: data,
     });
-    console.log(data);
+    // console.log(data);
   };
+
   const like = async (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    const Authorization = `Bearer ${token.access}`;
-    const count = await axios(`${API}/${id}/toggle_like`, {
-      headers: { Authorization },
-    });
-    console.log(count);
-    getProducts();
+    // const Authorization = `Bearer ${token.access}`;
+    try {
+      const count = await axios(`${API}/${id}/toggle_like/`, {
+        headers: { Authorization: `Bearer ${token.access}` },
+      });
+      console.log(count, "likes");
+      // getProducts();
+      await getProductDetails(id);
+    } catch (error) {
+      console.log(error);
+    }
   };
-  const getComments = async (id) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        // Authorization: Bearer ${token.access},
-      },
-    };
-    let { data } = await axios(`${API}/${id}`);
-    dispatch({
-      type: ACTIONS.GET_COMMENTS,
-      payload: data,
-    });
-  };
-  const addComment = async (c) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    let newComment = new FormData();
-    newComment.append("product", c.product);
-    newComment.append("text", c.text);
-    await axios.post(`${API}comments/`, newComment, config);
-  };
-  const deleteComment = async (id) => {
-    let token = JSON.parse(localStorage.getItem("token"));
-    const config = {
-      headers: {
-        "Content-Type": "multipart/form-data",
-        Authorization: `Bearer ${token.access}`,
-      },
-    };
-    await axios.delete(`${API}comments/${id}/`, config);
-  };
+
   return (
     <productContext.Provider
       value={{
@@ -179,9 +154,6 @@ const ProductContextProvider = ({ children }) => {
         fetchByParams,
         searchFilter,
         like,
-        getComments,
-        addComment,
-        deleteComment,
       }}
     >
       {children}
