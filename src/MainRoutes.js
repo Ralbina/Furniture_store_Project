@@ -15,6 +15,7 @@ import Furniture from "./Components/LightFurniture/Furniture";
 import LightFurniture from "./Components/LightFurniture/LightFurniture";
 import ProductDetails from "./Components/ProductDetails/ProductDetails";
 import ProductList from "./Components/ProductList/ProductList";
+import Payment from "./Components/Payment/Payment";
 
 const MainRoutes = () => {
   return (
@@ -34,6 +35,7 @@ const MainRoutes = () => {
       <Route path="/furniture" element={<Furniture />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/favorite" element={<Favorite />} />
+      <Route path="/payment" element={<Payment />} />
     </Routes>
   );
 };

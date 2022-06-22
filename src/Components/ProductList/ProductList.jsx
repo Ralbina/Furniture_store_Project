@@ -43,12 +43,6 @@ const ProductList = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setSearchParams({
-      search: search,
-    });
-  }, [search]);
-
-  useEffect(() => {
     getProducts();
   }, []);
   useEffect(() => {
@@ -60,29 +54,6 @@ const ProductList = () => {
   console.log(products.results, "results in list");
   return (
     <>
-      <LiveSearch />
-      {/* <Grid item md={2}>
-        <Paper
-          elevation={5}
-          sx={{ p: 2, bgcolor: "#f5f5f5", marginRight: "30px" }}
-        >
-          <TextField
-            fullWidth
-            id="input-with-icon-textfield"
-            label="Search..."
-            value={search}
-            onChange={(e) => searchFilter(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-        </Paper>
-      </Grid> */}
       <Grid item>
         <Box
           sx={{
@@ -95,7 +66,10 @@ const ProductList = () => {
           {products.results ? (
             products.results.map((item) => {
               return (
-                <Card sx={{ maxWidth: 500 }}>
+                <Card
+                  onClick={() => navigate(`/details/${item.id}`)}
+                  sx={{ maxWidth: 500 }}
+                >
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -124,13 +98,6 @@ const ProductList = () => {
                     >
                       <ShoppingCartIcon />
                     </Button>
-                    <Button
-                      onClick={() => navigate(`/details/${item.id}`)}
-                      size="small"
-                      color="primary"
-                    >
-                      Подробнее
-                    </Button>
                   </CardActions>
                 </Card>
               );
@@ -145,7 +112,7 @@ const ProductList = () => {
             justifyContent: "center",
           }}
         >
-          <Box my={3}>
+          <Box display="flex" justifyContent="center" my={3}>
             <Pagination count={count} page={page} onChange={handleChange} />
           </Box>
         </Box>

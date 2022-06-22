@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useProducts } from "../Context/ProductContext";
 import "../Admin/EditProduct.css";
+import Select from "react-select";
 
 const EditProduct = () => {
   const { getProductDetails, productDetails, saveEditedProduct } =
@@ -34,6 +35,19 @@ const EditProduct = () => {
     let file = e.target.files[0];
     setProduct({ ...product, image: file });
   };
+  const options = [
+    { value: "wardrobes", label: "ШКАФ" },
+    { value: "bedroom-sets", label: "СПАЛЬНИ" },
+    { value: "hallways", label: "ПРИХОЖИЕ" },
+    { value: "kitchens", label: "КУХНИ" },
+    { value: "tv-stand", label: "TV ТУМБЫ" },
+    { value: "dressers", label: "КОМОДЫ" },
+    { value: "living-room-sets", label: "ГОСТИНЫЕ" },
+    { value: "children-sets", label: "ДЕТСКИЕ & ОФИС" },
+    { value: "cushioned-furniture", label: "МЯГКАЯ МЕБЕЛЬ" },
+  ];
+
+  const [selectedOption, setSelectedOption] = useState(null);
 
   return (
     <div className="editPage">
@@ -60,21 +74,6 @@ const EditProduct = () => {
           onChange={handleInp}
         />
 
-        <TextField
-          sx={{
-            marginBottom: "10px",
-            borderColor: "black",
-            backgroundColor: "whitesmoke",
-          }}
-          fullWidth
-          id="outlined-basic"
-          label="Speciality"
-          variant="outlined"
-          name="speciality"
-          size="small"
-          value={product.type || ""}
-          onChange={handleInp}
-        />
         <TextField
           sx={{
             marginBottom: "10px",
@@ -119,6 +118,12 @@ const EditProduct = () => {
           size="small"
           value={product.description || ""}
           onChange={handleInp}
+        />
+        <Select
+          defaultValue={selectedOption}
+          onChange={setSelectedOption}
+          options={options}
+          label="Тип товара"
         />
         <Input type="file" onChange={handleInpFile} />
 
