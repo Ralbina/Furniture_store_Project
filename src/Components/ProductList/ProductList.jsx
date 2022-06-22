@@ -17,14 +17,58 @@ import {
 import React, { useState } from "react";
 import { useEffect } from "react";
 import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
-import { useProducts } from "../Context/ProductContext";
+import { productContext, useProducts } from "../Context/ProductContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useContext } from "react";
 import { cartContext } from "../Context/CartContext";
 import { favoriteContext } from "../Context/FavoriteContext";
 import SearchIcon from "@mui/icons-material/Search";
-import LiveSearch from "../LiveSearch/LiveSearch";
+import SideBarSearch from "../sideBar/SideBarSearch";
+import SideBarFilter from "../sideBar/SideBarFilter";
+import { styled, alpha } from "@mui/material/styles";
+import InputBase from "@mui/material/InputBase";
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: alpha(theme.palette.common.white, 0.15),
+  "&:hover": {
+    backgroundColor: alpha(theme.palette.common.white, 0.25),
+  },
+  marginRight: theme.spacing(2),
+  marginLeft: 0,
+  width: "100%",
+  [theme.breakpoints.up("sm")]: {
+    marginLeft: theme.spacing(3),
+    width: "auto",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(0, 2),
+  height: "100%",
+  position: "absolute",
+  pointerEvents: "none",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  color: "inherit",
+  "& .MuiInputBase-input": {
+    padding: theme.spacing(1, 1, 1, 0),
+    // vertical padding + font size from searchIcon
+    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
+    transition: theme.transitions.create("width"),
+    width: "100%",
+    [theme.breakpoints.up("md")]: {
+      width: "20ch",
+    },
+  },
+}));
+
 const ProductList = () => {
   const {
     products,
@@ -32,57 +76,65 @@ const ProductList = () => {
     page,
     setPage,
     count,
-    fetchByParams,
+    // fetchByParams,
     searchFilter,
   } = useProducts();
 
   const { addProductToCart } = useContext(cartContext);
   const { addProductToFavorite } = useContext(favoriteContext);
+  const { fetchByParams } = useContext(productContext);
   const navigate = useNavigate();
-  console.log(products.results);
+  // console.log(products.results);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    setSearchParams({
-      search: search,
-    });
-  }, [search]);
+  const [type, setType] = useState(searchParams.get("type") || "all");
+  const paramsWithType = () => {
+    fetchByParams();
+    // console.log("params With Type");
+    return {
+      type: type,
+      search: searchParams.get("search"),
+    };
+  };
 
+  const paramsNoType = () => {
+    fetchByParams();
+    // console.log("params No Type");
+    return {
+      search: searchParams.get("search") || "",
+    };
+  };
   useEffect(() => {
-    getProducts();
+    if (searchParams.get("type")) {
+      setSearchParams(paramsWithType());
+    } else {
+      setSearchParams(paramsNoType());
+    }
   }, []);
+  useEffect(() => {
+    fetchByParams();
+    if (type === "all") {
+      setSearchParams(paramsNoType());
+    } else {
+      setSearchParams(paramsWithType());
+    }
+  }, [type, searchParams]);
   useEffect(() => {
     getProducts();
   }, [page, searchParams]);
   const handleChange = (e, p) => {
     setPage(p);
   };
-  console.log(products.results, "results in list");
+  // console.log(products.results, "results in list");
   return (
     <>
-      <LiveSearch />
-      {/* <Grid item md={2}>
-        <Paper
-          elevation={5}
-          sx={{ p: 2, bgcolor: "#f5f5f5", marginRight: "30px" }}
-        >
-          <TextField
-            fullWidth
-            id="input-with-icon-textfield"
-            label="Search..."
-            value={search}
-            onChange={(e) => searchFilter(e.target.value)}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <SearchIcon />
-                </InputAdornment>
-              ),
-            }}
-            variant="standard"
-          />
-        </Paper>
-      </Grid> */}
+      <div>
+        <SideBarSearch />
+      </div>
+      <Grid item md={2}>
+        <TextField type="text" onChange={(e) => searchFilter(e.target.value)} />
+        <SideBarFilter type={type} setType={setType} />
+      </Grid>
       <Grid item>
         <Box
           sx={{

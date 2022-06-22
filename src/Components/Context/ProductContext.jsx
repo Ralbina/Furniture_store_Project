@@ -96,11 +96,25 @@ const ProductContextProvider = ({ children }) => {
     getProducts();
   };
 
-  const fetchByParams = async (query, value) => {
+  const fetchByParams = async (value) => {
+    //фильтрация
     if (value === "all") {
       getProducts();
-    } else {
-      const { data } = await axios(`${API}filter/?${query}=${value}`);
+    } else if (
+      value === "wardrobes" ||
+      value === "bedroom-sets" ||
+      value === "kitchens" ||
+      value === "tv-stand" ||
+      value === "dressers" ||
+      value === "living-room-sets" ||
+      value === "children-sets" ||
+      value === "cushioned-furniture"
+    ) {
+      const { data } = await axios(
+        `${API}/?type=${value}&name=&description=&price_from=&price_to=`
+      );
+      console.log(value);
+      console.log(data);
       dispatch({
         type: ACTIONS.GET_PRODUCTS,
         payload: data,
@@ -110,13 +124,13 @@ const ProductContextProvider = ({ children }) => {
 
   const searchFilter = async (value) => {
     // search
-    const { data } = await axios(`${API}/search=${value}`);
+    const { data } = await axios(`${API}/?name=${value}`);
     dispatch({
       type: ACTIONS.GET_PRODUCTS,
       payload: data,
     });
-    console.log(data);
   };
+
   const like = async (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
     const Authorization = `Bearer ${token.access}`;

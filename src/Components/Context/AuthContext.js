@@ -36,6 +36,7 @@ const AuthContextProvider = ({ children }) => {
     formData.append("email", user.email);
     formData.append("password", user.password);
     formData.append("password_confirm", user.password_confirm);
+    console.log(...formData);
     try {
       const res = await axios.post(
         `${AUTH_API}api/register/`,
@@ -58,20 +59,22 @@ const AuthContextProvider = ({ children }) => {
     let formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    console.log(formData);
+    // console.log(formData);
     try {
       let res = await axios.post(`${AUTH_API}api/login/`, formData, config);
       localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
 
-      console.log(res.data);
-      console.log(email);
-      console.log(password);
+      // console.log(res.data);
+      // console.log(email);
+      // console.log(password);
       setUser(email, password);
       navigate("/");
     } catch (error) {
       setError("error occured");
+      // alert("hi");
+      alertToastify("This user doesn't exist, please register!");
     }
   }
 
@@ -127,7 +130,7 @@ const AuthContextProvider = ({ children }) => {
       );
       console.log(res);
       //   alertToastify("All good");
-      navigate("/done");
+      navigate("/login");
     } catch (e) {
       alertToastify(e);
       console.log(e);

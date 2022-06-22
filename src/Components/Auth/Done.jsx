@@ -18,7 +18,7 @@ const Done = () => {
             //     navigate("/");
             //   }}
           >
-            Go to the main page.
+            Go to the login.
           </p>
         </NavLink>
       </div>
