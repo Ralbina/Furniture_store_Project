@@ -12,14 +12,7 @@ const Done = () => {
           e-mail.
         </p>
         <NavLink to="/login">
-          <p
-            className="pDone"
-            //   onClick={() => {
-            //     navigate("/");
-            //   }}
-          >
-            Go to the login.
-          </p>
+          <p className="pDone">Go to the login.</p>
         </NavLink>
       </div>
     </div>

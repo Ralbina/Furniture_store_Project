@@ -106,12 +106,7 @@ export default function Registration() {
           <Typography component="h1" variant="h5">
             Registration
           </Typography>
-          <Box
-            // component="form"
-            // onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box noValidate sx={{ mt: 1 }}>
             {error ? <Typography>{error}</Typography> : null}
             <TextField
               margin="normal"
@@ -167,13 +162,10 @@ export default function Registration() {
               label="Remember me"
             />
             <Button
-              //   type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
               onClick={() => {
-                // handleClick();
-
                 handleRegister(username, email, password, password_confirm);
                 navigate("/done");
               }}

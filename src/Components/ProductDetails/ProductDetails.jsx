@@ -48,17 +48,9 @@ const ProductDetails = ({ item }) => {
 
     setClear(e.target.value);
   };
-
-  // const likeProduct = (id) => {
-  //   like(id);
-  //   getProductDetails(id);
-  // };
-
   const clearInp = (e) => {
     setClear("");
   };
-
-  // console.log('like', like(id));
   return (
     <>
       <div className="detailsCard">
@@ -95,7 +87,6 @@ const ProductDetails = ({ item }) => {
               color={productDetails.liked_by_user ? "error" : "success"}
               sx={{ fontSize: 50 }}
             />
-            {/* <FavoriteBorderIcon /> */}
 
             <Typography>{productDetails.like}</Typography>
           </IconButton>
