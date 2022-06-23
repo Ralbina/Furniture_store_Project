@@ -59,7 +59,6 @@ const Cart = () => {
 
                     <TableCell align="right">
                       <TextField
-                        // sx={{...}} - для стилей
                         onChange={(e) =>
                           changeProductCount(elem.item.id, e.target.value)
                         }

@@ -13,7 +13,6 @@ export const useProducts = () => {
 const INIT_STATE = {
   products: [],
   productDetails: {},
-  comments: [],
 };
 const reducer = (state = INIT_STATE, action) => {
   switch (action.type) {
@@ -21,8 +20,6 @@ const reducer = (state = INIT_STATE, action) => {
       return { ...state, products: action.payload };
     case ACTIONS.GET_PRODUCT_DETAILS:
       return { ...state, productDetails: action.payload };
-    case ACTIONS.GET_COMMENTS:
-      return { ...state, comments: action.payload };
     default:
       return state;
   }
@@ -136,13 +133,11 @@ const ProductContextProvider = ({ children }) => {
 
   const like = async (id) => {
     let token = JSON.parse(localStorage.getItem("token"));
-    // const Authorization = `Bearer ${token.access}`;
     try {
       const count = await axios(`${API}/${id}/toggle_like/`, {
         headers: { Authorization: `Bearer ${token.access}` },
       });
       console.log(count, "likes");
-      // getProducts();
       await getProductDetails(id);
     } catch (error) {
       console.log(error);

@@ -71,8 +71,6 @@ const AddProduct = () => {
           mt: "10vh",
           display: "flex",
           flexDirection: "column",
-          // backgroundColor: "black",
-          // borderRadius: "10%",
         }}
       >
         <TextField

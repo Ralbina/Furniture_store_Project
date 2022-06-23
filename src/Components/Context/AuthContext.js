@@ -58,16 +58,11 @@ const AuthContextProvider = ({ children }) => {
     let formData = new FormData();
     formData.append("email", email);
     formData.append("password", password);
-    // console.log(formData);
     try {
       let res = await axios.post(`${AUTH_API}api/login/`, formData, config);
       localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("email", email);
       localStorage.setItem("password", password);
-
-      // console.log(res.data);
-      // console.log(email);
-      // console.log(password);
       setUser(email, password);
       navigate("/");
     } catch (error) {
@@ -127,7 +122,6 @@ const AuthContextProvider = ({ children }) => {
         config
       );
       console.log(res);
-      //   alertToastify("All good");
       navigate("/resetPassword");
     } catch (e) {
       alertToastify(e);
@@ -151,7 +145,6 @@ const AuthContextProvider = ({ children }) => {
         formData,
         config
       );
-      // localStorage.setItem("token", JSON.stringify(res.data));
       localStorage.setItem("activate_code", activate_code);
       localStorage.setItem("password", password);
       localStorage.setItem("password_confirm", password_confirm);
@@ -170,7 +163,6 @@ const AuthContextProvider = ({ children }) => {
         user,
         error,
         register,
-        // activation,
         login,
         checkAuth,
         logout,

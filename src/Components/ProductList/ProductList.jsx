@@ -60,7 +60,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   color: "inherit",
   "& .MuiInputBase-input": {
     padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create("width"),
     width: "100%",
@@ -71,26 +70,17 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 const ProductList = () => {
-  const {
-    products,
-    getProducts,
-    page,
-    setPage,
-    count,
-    // fetchByParams,
-    searchFilter,
-  } = useProducts();
+  const { products, getProducts, page, setPage, count, searchFilter } =
+    useProducts();
 
   const { addProductToCart } = useContext(cartContext);
   const { addProductToFavorite } = useContext(favoriteContext);
   const { fetchByParams } = useContext(productContext);
   const navigate = useNavigate();
-  // console.log(products.results);
   const [searchParams, setSearchParams] = useSearchParams();
   const [type, setType] = useState(searchParams.get("type") || "all");
   const paramsWithType = () => {
     fetchByParams();
-    // console.log("params With Type");
     return {
       type: type,
       search: searchParams.get("search"),
@@ -99,7 +89,6 @@ const ProductList = () => {
 
   const paramsNoType = () => {
     fetchByParams();
-    // console.log("params No Type");
     return {
       search: searchParams.get("search") || "",
     };
@@ -125,7 +114,6 @@ const ProductList = () => {
   const handleChange = (e, p) => {
     setPage(p);
   };
-  // console.log(products.results, "results in list");
   return (
     <>
       <div className="contList">
