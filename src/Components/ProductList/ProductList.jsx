@@ -130,7 +130,11 @@ const ProductList = () => {
     <>
       <div>{/* <SideBarSearch /> */}</div>
       <Grid item md={2}>
-        <TextField type="text" onChange={(e) => searchFilter(e.target.value)} />
+        <TextField
+          type="text"
+          placeholder="Поиск..."
+          onChange={(e) => searchFilter(e.target.value)}
+        />
         <SideBarFilter type={type} setType={setType} />
       </Grid>
       <Grid item>
@@ -146,11 +150,10 @@ const ProductList = () => {
             products.results.map((item) => {
               return (
                 <div className="textCard">
-                  <Card
-                    sx={{ maxWidth: 320, maxHeight: 500 }}
-                    onClick={() => navigate(`/details/${item.id}`)}
-                  >
-                    <CardActionArea>
+                  <Card sx={{ maxWidth: 320, maxHeight: 500 }}>
+                    <CardActionArea
+                      onClick={() => navigate(`/details/${item.id}`)}
+                    >
                       <CardMedia
                         component="img"
                         height="280"

@@ -36,7 +36,6 @@ const CreditCard = () => {
         <form className="formInput">
           <div className="row">
             <div className="col-sm-11">
-              <label for="name">Номер карты</label>
               <input
                 type="tel"
                 className="form-control"
@@ -44,6 +43,7 @@ const CreditCard = () => {
                 name="number"
                 maxlength="16"
                 pattern="[0-9]+"
+                placeholder="Номер карты"
                 onChange={(e) => {
                   SetNumber(e.target.value);
                 }}
@@ -54,12 +54,12 @@ const CreditCard = () => {
           <br />
           <div className="row">
             <div className="col-sm-11">
-              <label for="name">ФИО</label>
               <input
                 type="text"
                 className="form-control"
                 value={name}
                 name="name"
+                placeholder="Ф.И.О"
                 onChange={(e) => {
                   SetName(e.target.value);
                 }}
@@ -133,6 +133,7 @@ const CreditCard = () => {
                 className=" form-control card"
                 value={cvc}
                 pattern="\d*"
+                placeholder="cvv"
                 onChange={(e) => {
                   SetCvc(e.target.value);
                 }}
