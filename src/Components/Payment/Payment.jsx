@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
+import { Navigate, NavLink } from "react-router-dom";
 import "../Payment/Payment.css";
 
 const CreditCard = () => {
@@ -20,8 +21,6 @@ const CreditCard = () => {
 
   return (
     <>
-      {" "}
-      {/* <div className="rccs__card backcolor"> */}
       <div className="container-payment">
         <div clasName="rccs__card rccs__card--unknown">
           <Cards
@@ -142,11 +141,13 @@ const CreditCard = () => {
             </div>
           </div>
           <br />
-          <input
-            type="submit"
-            className="btn btn-danger form-control"
-            value="ПОДТВЕРДИТЬ"
-          />
+          <NavLink to="/confirm">
+            <input
+              type="submit"
+              className="btn btn-danger form-control"
+              value="ПОДТВЕРДИТЬ"
+            />
+          </NavLink>
         </form>
       </div>
     </>

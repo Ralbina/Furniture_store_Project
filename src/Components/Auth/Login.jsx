@@ -88,12 +88,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             LOGIN
           </Typography>
-          <Box
-            // component="form"
-            // onSubmit={handleSubmit}
-            noValidate
-            sx={{ mt: 1 }}
-          >
+          <Box noValidate sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -123,7 +118,6 @@ export default function Login() {
               label="Remember me"
             />
             <Button
-              //   type="submit"
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}

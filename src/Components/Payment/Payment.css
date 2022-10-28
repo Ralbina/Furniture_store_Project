@@ -4,7 +4,6 @@
   font-family: "Gilroy";
   font-style: normal;
   font-weight: 400;
-  /* font-size: 21px; */
   line-height: 140%;
   background-image: url("/src/assets/image/creditCard.jpg");
   background-size: cover;
@@ -44,12 +43,6 @@ form {
   -webkit-transition: all 0.4s linear;
   transition: all 0.4s linear;
   width: 290px;
-
-  /* background-image: url("/src/assets/image/creditCard2.jpg"); */
-
-  /* background: linear-gradient(
-       25deg
-    , #986, #234); */
 }
 
 .front1 {
@@ -90,8 +83,7 @@ form {
   color: black !important;
 }
 .formInput {
-  /* display: flex; */
   flex-direction: column;
   justify-content: flex-start;
-  margin-left: 605px;
+  margin-left: 700px;
 }
