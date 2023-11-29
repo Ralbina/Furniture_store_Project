@@ -10,12 +10,12 @@ import "./Home.css";
 
 // import required modules
 import { Navigation } from "swiper";
-import carousel1 from "../../assets/image/corousel1.jpg";
-import carousel2 from "../../assets/image/corousel2.jpg";
-import carousel3 from "../../assets/image/corousel3.jpg";
-import carousel4 from "../../assets/image/corousel4.jpg";
-import carousel5 from "../../assets/image/corousel5.jpg";
-import carousel6 from "../../assets/image/corousel6.jpg";
+import carousel1 from "../../assets/image/corousel1.jpeg";
+import carousel2 from "../../assets/image/corousel2.jpeg";
+import carousel3 from "../../assets/image/corousel3.jpeg";
+import carousel4 from "../../assets/image/corousel4.jpeg";
+import carousel5 from "../../assets/image/corousel5.jpeg";
+import carousel6 from "../../assets/image/corousel6.jpeg";
 import img2 from "../../assets/image/img2.png";
 import img3 from "../../assets/image/img3.png";
 import img4 from "../../assets/image/img4.png";
@@ -46,7 +46,7 @@ export default function Home() {
         <div className="swipe">
           <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
             <SwiperSlide>
-              <img src={carousel1} />
+              <img src={carousel5} />
             </SwiperSlide>
             <SwiperSlide>
               <img src={carousel2} />
@@ -58,15 +58,14 @@ export default function Home() {
               <img src={carousel4} />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={carousel5} />
+              <img src={carousel1} />
             </SwiperSlide>
             <SwiperSlide>
               <img src={carousel6} />
             </SwiperSlide>
           </Swiper>
-
           <p className="text1">
-            Eichholtz. <p>Inspired by the roots of Minimalist design</p>
+            Modern Furniture. <p>Inspired by the roots of Minimalist design</p>
           </p>
         </div>
       </div>

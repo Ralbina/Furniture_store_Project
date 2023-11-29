@@ -15,7 +15,7 @@ import AccountCircle from "@mui/icons-material/AccountCircle";
 import MailIcon from "@mui/icons-material/Mail";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/MoreVert";
-import logomain from "../../assets/image/logomain.png";
+import logo from "../../assets/image/logo.png";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../Context/AuthContext";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -225,9 +225,7 @@ export default function PrimarySearchAppBar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" sx={{ color: "white", bgcolor: "#154444" }}>
         <Toolbar>
-          <img data-aos="fade-down" id="logo" src={logomain} alt="logo" />
           <Box sx={{ flexGrow: 1 }} />
-
           <Box sx={{ display: { xs: "none", md: "flex" } }}>
             <NavLink className="nav-link" to="/">
               <p variant="contained">Home</p>

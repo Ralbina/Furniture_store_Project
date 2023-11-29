@@ -10,7 +10,7 @@ const Footer = () => {
     <div className="containerFooter">
       <div className="footer1">
         <div>
-          <p className="bigText1">Eichholtz.</p>
+          <p className="bigText1">DudeShape</p>
           <p className="textFooter1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod
             tempor incididunt ut labore at dolore.

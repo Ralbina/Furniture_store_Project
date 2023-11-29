@@ -12,16 +12,14 @@
   background-color: #154444;
   color: #698484;
   text-align: center;
-  font-size: 15px;
+  font-size: 20px;
 }
 .footer2 {
   border-top: 1px rgb(174, 170, 170) solid;
   padding: 10px;
-  margin-bottom: 0;
-  color: rgb(169, 163, 163);
 }
 .scanImg {
-  width: 40%;
+  width: 50%;
 }
 .textFooter1 {
   width: 300px;

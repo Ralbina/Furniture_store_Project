@@ -132,7 +132,6 @@ const CreditCard = () => {
                 className=" form-control card"
                 value={cvc}
                 pattern="\d*"
-                placeholder="cvv"
                 onChange={(e) => {
                   SetCvc(e.target.value);
                 }}
